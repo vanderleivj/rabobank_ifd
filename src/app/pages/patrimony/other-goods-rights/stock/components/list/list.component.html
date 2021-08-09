@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col col-lg-2">
+    <select class="form-control" [formControl]="downloadType" (change)="doDownload()">
+      <option value="0" disabled selected>Exportar</option>
+      <option value="1">Imprimir</option>
+      <option value="2">PDF</option>
+      <option value="3">Excel</option>
+    </select>
+  </div>
+
+  <div class="ml-auto bd-highlight">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" [formControl]="search" (change)="loadData()" placeholder="Pesquisar">
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th class="text-left">ESTOQUE</th>
+      <th>QUANTIDADE (KG)</th>
+      <th>PREÇO ATUAL (R$)</th>
+      <th>VALOR TOTAL (R$)</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <app-others-goods-rights-stock-form *ngIf="isOpen" [(isOpen)]="isOpen" (loadData)="loadData()"
+      class="show-component">
+    </app-others-goods-rights-stock-form>
+    <ng-container
+      *ngFor="let otherGood of othersGood | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }">
+      <tr *ngIf="!otherGood.isEditing">
+        <td class="text-left"><strong>{{ translateStockType(otherGood.stockType) }}</strong></td>
+        <td>{{ otherGood.quantity }}</td>
+        <td>{{ otherGood.price }}</td>
+        <td>{{ otherGood.totalValue }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-calendar-alt" (click)="expandListDetails(otherGood.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(otherGood.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(otherGood.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-others-goods-rights-stock-form *ngIf="otherGood.isEditing" [(isOpen)]="otherGood.isEditing"
+        (loadData)="loadData()" [othersGoodRightsStock]="otherGood" class="show-component">
+      </app-others-goods-rights-stock-form>
+
+      <tr *ngIf="otherGood.expanded">
+        <td colspan="7" class="row-expanded">
+          <div class="text-left ml-2">
+            <label>Distribuição Mensal </label><i class="icon-action ml-2 fa fa-chevron-up"
+              (click)="expandListDetails(otherGood.id || '')"></i>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <label>Periodo</label>
+            </div>
+            <div class="col-md-6 text-right">
+              <label>Valor (R$)</label>
+            </div>
+          </div>
+          <ng-container *ngFor="let distribution of otherGood.distributions">
+            <div class="row distribution-row">
+              <div class="col-md-6 text-left distribution-row-text">
+                <label>{{ distribution.period }}</label>
+              </div>
+              <div class="col-md-6 text-right distribution-row-text">
+                <label>{{ distribution.amount }}</label>
+              </div>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+
+
+    </ng-container>
+  </tbody>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
+</div>
+
+<div class="float">
+  <button (click)="loadAdd()" class="btn-float btn btn-primary primary-background-color">
+    <span class="txt-btn-float">
+      Adicionar Novo
+    </span>
+    <i class="fas fa-plus icon-btn-float"></i>
+  </button>
+</div>

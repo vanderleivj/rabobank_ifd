@@ -1,0 +1,175 @@
+<tr class="form-tr" [formGroup]='currentHarvestForm'>
+  <td colspan="7">
+
+    <div class="row ml-0">
+      <div class="col px-o">
+        <input class="form-control form-input input-w-md" formControlName='culture{{itemId}}' />
+      </div>
+      <div class="col px-o">
+        <ng-template #rtRegion let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md" formControlName="regionId{{itemId}}"
+          [ngbTypeahead]="searchRegion" [resultTemplate]="rtRegion" [inputFormatter]="formatter" />
+      </div>
+      <div class="col px-o">
+        <input class="form-control form-input input-w-md" formControlName='area{{itemId}}' />
+      </div>
+      <div class="col px-o">
+        <input class="form-control form-input input-w-md" formControlName='price{{itemId}}' />
+      </div>
+      <div class="col px-o">
+        <input class="form-control form-input input-w-md" formControlName='productivity{{itemId}}' />
+      </div>
+      <div class="col px-o">
+        <input class="form-control form-input input-w-md" formControlName='cost{{itemId}}' />
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row p-4 justify-content-between ">
+      <div class="col-md-2 text-left">
+        <strong>Comercialização</strong>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-outline-primary btn-radius" *ngIf="isExpanded"
+          (click)="loadAddNewCommercialization()">Add Novo</button>
+      </div>
+      <div class="col actions-right">
+        <strong class="open" *ngIf="isExpanded">Fechar</strong><i class="icon-action fa fa-chevron-up open"
+          (click)="expandListDetails()" *ngIf="isExpanded"></i>
+        <strong class="open" *ngIf="!isExpanded">Abrir</strong><i class="icon-action fa fa-chevron-down open"
+          (click)="expandListDetails()" *ngIf="!isExpanded"></i>
+      </div>
+    </div>
+
+    <br>
+
+    <table class="table" *ngIf='isExpanded'>
+      <thead>
+        <tr>
+          <td>Tipo</td>
+          <td>Comprador / Num. Contrato</td>
+          <td>Data de Embarque</td>
+          <td>Quantidade (KG)</td>
+          <td>Preço (R$ / KG)</td>
+          <td>Valor Total (R$)</td>
+          <td></td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <app-commercialization-form *ngIf='isAddingCommercialization'
+          (addCommercialization)="addCommercialization($event)" [(isOpen)]="isAddingCommercialization"
+          class="show-component"></app-commercialization-form>
+
+        <ng-container *ngFor="let item of currentHarvest?.commercializations">
+          <tr *ngIf="!item.isEditing">
+            <td>{{ item.type }}</td>
+            <td>{{ item.buyer }}</td>
+            <td>{{ item.boardingDate }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.amount }}</td>
+            <td>
+              <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEditCommercialization(item.id || '')"></i>
+              <i class="icon-action mr-30 fa fa-trash-alt" (click)="deleteCommercialization(item.id || '')"></i>
+            </td>
+          </tr>
+          <app-commercialization-form *ngIf="item.isEditing" [commercialization]="item"
+            (editCommercialization)="editCommercialization($event)" [(isOpen)]="item.isEditing"
+            [commercialization]="item" class="show-component">
+          </app-commercialization-form>
+        </ng-container>
+      </tbody>
+
+    </table>
+
+    <br>
+
+    <div class="row px-4 justify-content-between">
+      <div class="col-md-2 text-left">
+        <strong>Custos</strong>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-outline-primary btn-radius" *ngIf="isCostExpanded" (click)="loadAddNewCost()">Add
+          Novo</button>
+      </div>
+      <!-- get this value -->
+      <div class="col-md-6 actions-right" *ngIf="isCostExpanded">
+        <div>
+          <input type="radio" [formControl]="isAutomaticDistribution" value="1">
+          <label>Distribuição Automática</label>
+        </div>
+        <div class="ml-4">
+          <input type="radio" [formControl]="isAutomaticDistribution" value="0" >
+          <label>Distribuição Manual</label>
+        </div>
+      </div>
+      <div class="col actions-right">
+        <strong class="open" *ngIf="isCostExpanded">Fechar</strong><i class="icon-action fa fa-chevron-up open"
+          (click)="expandListCostDetails()" *ngIf="isCostExpanded"></i>
+        <strong class="open" *ngIf="!isCostExpanded">Abrir</strong><i class="icon-action fa fa-chevron-down open"
+          (click)="expandListCostDetails()" *ngIf="!isCostExpanded"></i>
+      </div>
+    </div>
+
+    <br>
+    <table class="table" *ngIf='isCostExpanded'>
+      <thead>
+        <tr>
+          <td>Período</td>
+          <td>Valor (R$)</td>
+          <td></td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <app-cost-form *ngIf='isAddingCost' (addCost)="addCost($event)" [(isOpen)]="isAddingCost"
+          [isAutomaticDistribution]="isAutomaticDistribution.value" class="show-component"></app-cost-form>
+
+        <ng-container *ngFor="let item of currentHarvest?.costs">
+          <tr *ngIf="!item.isEditing && filterCost(item)">
+            <td>{{ item.period }}</td>
+            <td>{{ item.amount }}</td>
+            <td>
+              <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEditCost(item.id || '')"></i>
+              <i class="icon-action mr-30 fa fa-trash-alt" (click)="deleteCost(item.id || '')"></i>
+            </td>
+          </tr>
+          <app-cost-form *ngIf="item.isEditing" [cost]="item" (editCost)="editCost($event)"
+            [isAutomaticDistribution]="isAutomaticDistribution.value" [(isOpen)]="item.isEditing" class="show-component">
+          </app-cost-form>
+        </ng-container>
+      </tbody>
+
+    </table>
+
+    <br>
+
+    <div class="row align-items-center">
+      <div class="col-sm-3 ml-4">
+        <div class="row">
+          <label>Quantidade Total: {{ harvestIndicator?.quantity }}</label>
+        </div>
+        <div class="row">
+          <label>Custo Total: <strong>{{ harvestIndicator?.totalCost }}</strong></label>
+        </div>
+      </div>
+      <div class="col-sm-6 ">
+        <div class="row">
+          <strong>Referência RBB:</strong>
+        </div>
+        <div class="row">
+          <label>Preço R$: <strong>{{ harvestIndicator?.price }}</strong> Produtividade (KG/ha): <strong>{{ harvestIndicator?.productivity }}</strong> Custo (KG/ha):
+            <strong>{{ harvestIndicator?.cost }}</strong></label>
+        </div>
+      </div>
+      <div class="col-sm-auto actions-right">
+        <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+        <i (click)="cancelAddOrEdit()" class="fa fa-trash-alt icon-action m-auto"></i>
+      </div>
+    </div>
+  </td>
+</tr>

@@ -1,0 +1,42 @@
+<tr class="form-tr" [formGroup]="shareholdingForm">
+  <td colspan="7">
+    <div class="row ml-0">
+      <div class="col pl-0 custom-column">
+        <ng-template #rtCompany let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md" formControlName="companyId{{itemId}}"
+          [ngbTypeahead]="searchCompany" [resultTemplate]="rtCompany" [inputFormatter]="formatter" />
+      </div>
+      <div class="col pl-0 custom-column">
+        <input class="form-control form-input input-w-md" formControlName="equityCapitalValue{{itemId}}" type="text" />
+      </div>
+      <div class="col custom-column">
+        <input class="form-control form-input input-w-md" formControlName="capitalPortion{{itemId}}" type="text" />
+      </div>
+      <div class="col custom-column">
+        <input class="form-control form-input input-w-md" formControlName="fullParticipationValue{{itemId}}" type="text" />
+      </div>
+      <div class="col custom-column">
+        <input class="form-control form-input input-w-md" formControlName="grossRevenue{{itemId}}" type="text" />
+      </div>
+      <div class="col custom-column">
+        <select class="form-control form-input input-w-md" formControlName="sourceId{{itemId}}" >
+          <option *ngFor="let state of states" value={{state.id}}>{{state.name}}</option>
+        </select>
+      </div>
+    </div>
+    <hr>
+    <div class="row px-4">
+      <div class="form-check ml-3 d-flex">
+        <input class="form-check-input my-auto" type="checkbox" formControlName="isBRS{{itemId}}" id="defaultCheck1" style="top: 11px;">
+        <label class="form-check-label mr-15 my-auto" for="defaultCheck1"> Refletir BRS</label>
+        <i class="icon-action fa fa-question-circle ml-2 my-auto"></i>
+      </div>
+      <div class="col actions-right">
+        <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+        <i (click)="cancelAddOrEdit()" class="fa fa-trash-alt icon-action" style="padding-top: 5px;"></i>
+      </div>
+    </div>
+  </td>
+</tr>

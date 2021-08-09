@@ -1,0 +1,63 @@
+<div class="d-flex bd-highlight">
+  <div class="bd-highlight">
+    <select class="form-control" [formControl]="downloadType" (change)="doDownload()">
+      <option value="0" disabled selected>Exportar</option>
+      <option value="1">Imprimir</option>
+      <option value="2">PDF</option>
+      <option value="3">Excel</option>
+    </select>
+  </div>
+
+  <div class="ml-auto bd-highlight">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" [formControl]="search" (change)="loadData()" placeholder="Pesquisar">
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th>CULTURA</th>
+      <th>REGIÃO RBB</th>
+      <th>ÁREA (HA)</th>
+      <th>PREÇO (R$ / KG)</th>
+      <th>
+        PRODUTIVIDADE
+        (R$ / KG)
+      </th>
+      <th>
+        CUSTO
+        (R$ / KG)
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container
+      *ngFor="let item of financialHarvest | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }">
+      <tr *ngIf="!item.isEditing">
+        <td>{{ item.culture }}</td>
+        <td>{{ item.region?.name }}</td>
+        <td>{{ item.area }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.productivity }}</td>
+        <td>{{ item.cost }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(item.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-commercialization-financial-harvest-form *ngIf="item.isEditing" [harvestIndicator]="harvestIndicator"
+        (loadData)="loadData()" [(isOpen)]="item.isEditing" [financialHarvest]="item" class="show-component">
+      </app-commercialization-financial-harvest-form>
+    </ng-container>
+  </tbody>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
+</div>

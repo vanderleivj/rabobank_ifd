@@ -1,0 +1,25 @@
+strong, label {
+  text-align: start;
+}
+
+strong {
+  font-size: 14px;
+  color: #7F7F7F
+}
+
+label {
+  font-size: 12px;
+}
+
+.open {
+  color: #131BAA;
+  margin-right: 10px;
+}
+
+.check {
+  margin-top: 30px;
+}
+
+td {
+  font-size: 12px;
+}

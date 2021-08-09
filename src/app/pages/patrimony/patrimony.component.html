@@ -1,0 +1,82 @@
+<app-header></app-header>
+
+<div class="container">
+  <h4>Confira as Informações Patrimoniais da proposta</h4>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Breadcrumb 1</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Breadcrumb 2</li>
+    </ol>
+  </nav>
+</div>
+
+
+<div class="container container-tabs-nav">
+  <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a [className]="isProperties ? 'nav-link active' : 'nav-link'" id="pills-properties-tab" data-toggle="pill"
+        routerLink="/patrimonial/imoveis-rurais" role="tab" aria-controls="pills-properties" aria-selected="true">
+        Imóveis Rurais
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [className]="isAssets ? 'nav-link active' : 'nav-link'" id="pills-assets-tab" data-toggle="pill"
+        routerLink="/patrimonial/bens-moveis-imoveis" role="tab" aria-controls="pills-assets" aria-selected="false">
+        Bens Móveis / Imóveis
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [className]="isLivestock ? 'nav-link active' : 'nav-link'" id="pills-livestock-tab" data-toggle="pill"
+        routerLink="/patrimonial/semoventes" role="tab" aria-controls="pills-livestock" aria-selected="false">
+        Semoventes
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [className]="isOthersGoods ? 'nav-link active' : 'nav-link'" id="pills-other-goods-rights-tab"
+        data-toggle="pill" routerLink='/patrimonial/outros-bens-e-direito' role="tab"
+        aria-controls="pills-other-good-rights" aria-selected="false">
+        Outros bens e direito
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [className]="isDebts ? 'nav-link active' : 'nav-link'" id="pills-debts-tab" data-toggle="pill"
+        routerLink='/patrimonial/debito' role="tab" aria-controls="pills-debts" aria-selected="false">
+        Dívidas
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-resume-tab" data-toggle="pill" routerLink='/patrimonial/resumo' role="tab"
+        aria-controls="pills-resume" aria-selected="false">
+        Resumo
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-attachment-tab" data-toggle="pill" routerLink='/patrimonial/anexo' role="tab"
+        aria-controls="pills-attachment" aria-selected="false">
+        Anexo
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="main-container">
+  <div class="container">
+    <div class="tab-content" id="pills-tabContent">
+      <div [className]="isProperties ? 'tab-pane fade show active' : 'tab-pane fade'" id="pills-properties"
+        role="tabpanel" aria-labelledby="pills-properties-tab">
+        <app-rural-properties *ngIf="isProperties"></app-rural-properties>
+      </div>
+      <div [className]="isLivestock ? 'tab-pane fade show active' : 'tab-pane fade'" id="pills-livestock"
+        role="tabpanel" aria-labelledby="pills-livestock-tab">
+        <app-livestock *ngIf="isLivestock"></app-livestock>
+      </div>
+      <div [className]="isOthersGoods ? 'tab-pane fade show active' : 'tab-pane fade'" id="pills-other-goods-rights"
+        role="tabpanel" aria-labelledby="pills-other-goods-rights-tab">
+        <app-other-goods-rights *ngIf="isOthersGoods"></app-other-goods-rights>
+      </div>
+      <div [className]="isDebts ? 'tab-pane fade show active' : 'tab-pane fade'" id="pills-debts" role="tabpanel"
+        aria-labelledby="pills-debts-tab">
+        <app-debts *ngIf="isDebts"></app-debts>
+      </div>
+    </div>
+  </div>
+</div>

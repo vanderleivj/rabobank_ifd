@@ -1,0 +1,52 @@
+<div>
+  <div class="mt-4">
+    <div class="row justify-content-between">
+      <h5 class="title-page"><strong>Semoventes </strong> Cadastrados na Proposta (08)</h5>
+      <p class="livestock-total-value">Valor total: <strong>{{ getTotalLiveStock() }}</strong></p>
+    </div>
+    <hr>
+  </div>
+  <div class="mt-4">
+    <div class="row">
+      <div class="col-3 px-2">
+        <app-livestock-card
+          title="Gado Bovino"
+          imageFile="../../../../../../assets/ic_bovino.png"
+          [totalValue]="totalValueCattle"
+          [totalLivestock]="totalCattle"
+          [colorLivestock]="colorCattle"
+        ></app-livestock-card>
+      </div>
+      <div class="col-3 px-2">
+        <app-livestock-card
+          title="Gado Leiteiro"
+          imageFile="../../../../../../assets/ic_gado_leiteiro.png"
+          [totalValue]="totalValueCow"
+          [totalLivestock]="totalCow"
+          [colorLivestock]="colorCow"
+        ></app-livestock-card>
+      </div>
+      <div class="col-3 px-2">
+        <app-livestock-card
+          title="Suínos"
+          imageFile="../../../../../../assets/ic_suinos.png"
+          [totalValue]="totalValuePig"
+          [totalLivestock]="totalPig"
+          [colorLivestock]="colorPigs"
+        ></app-livestock-card>
+      </div>
+      <div class="col-3 px-2">
+        <app-livestock-card
+          title="Aves"
+          imageFile="../../../../../../assets/ic_aves.png"
+          [totalValue]="totalValueChicken"
+          [totalLivestock]="totalChicken"
+          [colorLivestock]="colorChickens"
+        ></app-livestock-card>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4">
+    <app-livestock-list></app-livestock-list>
+  </div>
+</div>

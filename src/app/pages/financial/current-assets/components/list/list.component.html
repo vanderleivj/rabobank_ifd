@@ -1,0 +1,106 @@
+<div class="d-flex bd-highlight">
+  <div class="bd-highlight">
+    <select class="form-control" [formControl]="downloadType" (change)="doDownload()">
+      <option value="0" disabled selected>Exportar</option>
+      <option value="1">Imprimir</option>
+      <option value="2">PDF</option>
+      <option value="3">Excel</option>
+    </select>
+  </div>
+
+  <div class="ml-auto bd-highlight">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" [formControl]="search" (change)="loadData()" placeholder="Pesquisar">
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th>NOVOS ATIVOS CIRCULANTES</th>
+      <th>ATUAL</th>
+      <th>{{ tableHeaders[0]}}</th>
+      <th>{{ tableHeaders[1]}}</th>
+      <th>{{ tableHeaders[2]}}</th>
+      <th>{{ tableHeaders[3]}}</th>
+      <th>{{ tableHeaders[4]}}</th>
+      <th>{{ tableHeaders[5]}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <app-current-assets-form *ngIf="isOpen" [(isOpen)]="isOpen" (loadData)="loadData()" class="show-component">
+    </app-current-assets-form>
+    <ng-container
+      *ngFor="let item of newCurrentHarvests | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }">
+      <tr *ngIf="!item.isEditing">
+        <td>{{ item.asset?.name }}</td>
+        <td>{{ item.current }}</td>
+        <td>
+          {{ item.projections[0].value }}
+        </td>
+        <td>
+          {{ item.projections[1].value }}
+        </td>
+        <td>
+          {{ item.projections[2].value }}
+        </td>
+        <td>
+          {{ item.projections[3].value }}
+        </td>
+        <td>
+          {{ item.projections[4].value }}
+        </td>
+        <td>
+          {{ item.projections[5].value }}
+        </td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(item.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-current-assets-form *ngIf="item.isEditing" (loadData)="loadData()" [(isOpen)]="item.isEditing"
+        [newCurrentHarvests]="item" class="show-component">
+      </app-current-assets-form>
+    </ng-container>
+    <tr class="section-header-blue">
+      <td>Ativos Circulantes Total</td>
+      <td>{{ newCurrentHarvestsAsset.current }}</td>
+      <td>{{ newCurrentHarvestsAsset.projections[0].value }}</td>
+      <td>{{ newCurrentHarvestsAsset.projections[1].value }}</td>
+      <td>{{ newCurrentHarvestsAsset.projections[2].value }}</td>
+      <td>{{ newCurrentHarvestsAsset.projections[3].value }}</td>
+      <td>{{ newCurrentHarvestsAsset.projections[4].value }}</td>
+      <td>{{ newCurrentHarvestsAsset.projections[5].value }}</td>
+      <td></td>
+    </tr>
+     <tr class="section-header">
+        <td>Custo Total de Safra</td>
+        <td>{{ newCurrentHarvestsTotal.current }}</td>
+        <td>{{ newCurrentHarvestsTotal.projections[0].value }} </td>
+        <td>{{ newCurrentHarvestsTotal.projections[1].value }}</td>
+        <td>{{ newCurrentHarvestsTotal.projections[2].value }}</td>
+        <td>{{ newCurrentHarvestsTotal.projections[3].value }}</td>
+        <td>{{ newCurrentHarvestsTotal.projections[4].value }}</td>
+        <td>{{ newCurrentHarvestsTotal.projections[5].value }}</td>
+        <td></td>
+      </tr>
+  </tbody>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
+</div>
+
+<div class="float">
+  <button (click)="loadAdd()" class="btn-float btn btn-primary primary-background-color">
+    <span class="txt-btn-float">
+      Adicionar Novo Ativo
+    </span>
+    <i class="fas fa-plus icon-btn-float"></i>
+  </button>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="container-legend">
+    <div class="own-area">
+      <p class="title-legend">Área própria (ha)</p>
+      <p class="own-area-value">700<span>(70%)</span></p>
+    </div>
+    <div class="leased-area">
+      <p class="title-legend">Área arrendada (ha)</p>
+      <p class="leased-value">300<span>(30%)</span></p>
+    </div>
+  </div>
+  <div class="container-chart">
+    <canvas [id]="chartId">{{ chart }}</canvas>
+    <div class="container-title">
+      <p class="chart-title-value"><span>1000</span> (HA)</p>
+      <p class="chart-title">Área Total</p>
+    </div>
+  </div>
+
+</div>

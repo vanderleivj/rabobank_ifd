@@ -1,0 +1,23 @@
+<div>
+  <div class="mt-4">
+    <div class="row justify-content-between">
+      <h5><strong>Outros bens e Direitos </strong> Cadastrados na Proposta (05)</h5>
+      <select id="type" (change)="onChangeType($event)">
+        <option value="estoques">Estoques</option>
+        <option value="safraFormacao">Safra Formação</option>
+        <option value="insumos">Insumos</option>
+        <option value="valorFinanceiros">Valor Financeiros (Ativo)</option>
+        <option value="participacaoAcionaria">Participação Acionária</option>
+      </select>
+      <!-- aqui entra campo de select  -->
+    </div>
+    <hr>
+
+    <app-stock *ngIf="isStock"></app-stock>
+    <app-harvest *ngIf='isHarvest'></app-harvest>
+    <app-supplies *ngIf='isSupplies'></app-supplies>
+    <app-financial *ngIf='isfinancialValue'></app-financial>
+    <app-shareholding *ngIf='isShareholding'></app-shareholding>
+
+  </div>
+</div>

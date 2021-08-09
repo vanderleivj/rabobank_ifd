@@ -1,0 +1,45 @@
+<div class="d-flex bd-highlight">
+  <div class="bd-highlight">
+    <select class="form-control" [formControl]="downloadType" (change)="doDownload()">
+      <option value="0" disabled selected>Exportar</option>
+      <option value="1">Imprimir</option>
+      <option value="2">PDF</option>
+      <option value="3">Excel</option>
+    </select>
+  </div>
+
+  <div class="ml-auto bd-highlight">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" [formControl]="search" (change)="loadData()" placeholder="Pesquisar">
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th>PROPOSTA</th>
+      <th>PRODUTOR</th>
+      <th>AGÊNCIA</th>
+      <th>GERENTE DE CONTAS</th>
+      <th>STATUS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container
+      *ngFor="let bid of bids | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }">
+      <tr class="pointer" (click)="selectProposal(bid.id || '')">
+        <td>{{ bid.proposal }}</td>
+        <td>{{ bid.client }}</td>
+        <td>{{ bid.agency }}</td>
+        <td>{{ bid.accountManager }}</td>
+        <td>{{ bid.status }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
+</div>

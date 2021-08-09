@@ -1,0 +1,87 @@
+<tr class="form-tr" [formGroup]='nextHarvestForm'>
+  <td colspan="7">
+    <div class="row ml-0">
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='culture{{ itemId }}'>
+        <br>
+        <label class="mt-3">UF</label>
+        <select class="form-control form-input input-w-md mt-2" formControlName="stateId{{itemId}}"
+          (change)="loadCities()">
+          <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+        </select>
+      </div>
+      <div class="col">
+        <ng-template #rtRegion let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md" formControlName="regionId{{itemId}}"
+          [ngbTypeahead]="searchRegion" [resultTemplate]="rtRegion" [inputFormatter]="formatter" />
+        <br>
+        <label>Município</label>
+        <ng-template #rtCity let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md" formControlName="cityId{{itemId}}"
+          [ngbTypeahead]="searchCity" [resultTemplate]="rtCity" [inputFormatter]="formatter" />
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period2{{ itemId }}'>
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period3{{ itemId }}'>
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period4{{ itemId }}'>
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period5{{ itemId }}'>
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period6{{ itemId }}'>
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period7{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='area0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='area1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='area2{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='area3{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='area4{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='area5{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='area6{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='area7{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='price0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='price1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='price2{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='price3{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='price4{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='price5{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='price6{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='price7{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='productivity0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='productivity1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='productivity2{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='productivity3{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='productivity4{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='productivity5{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='productivity6{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='productivity7{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='cost0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='cost1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='cost2{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='cost3{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='cost4{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='cost5{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='cost6{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='cost7{{ itemId }}'>
+      </div>
+    </div>
+  </td>
+  <td>
+    <div class="col">
+      <div class="col">
+        <button class="btn btn-primary btn-radius mr-30 m-auto" (click)="addOrEdit()">Salvar</button>
+        <i class="fa fa-trash-alt icon-action pt-2" (click)="cancelAddOrEdit()"></i>
+      </div>
+    </div>
+  </td>
+</tr>

@@ -1,0 +1,106 @@
+<tr class="form-tr" [formGroup]="livestockForm">
+  <td colspan="7">
+    <div class="row ml-0">
+      <div class="col pl-0">
+        <div class="form-group">
+          <select class="form-control form-input input-w-md" formControlName="livestockType{{itemId}}">
+            <option *ngFor="let item of livestockTypeOptions" [value]="item.value">{{item.title}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <select class="form-control form-input input-w-md" formControlName="herdType{{itemId}}">
+          <option *ngFor="let item of livestockHerdOptions" [value]="item.value">{{item.title}}</option>
+        </select>
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName="quantity{{itemId}}" type="text" />
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName="weightAverage{{itemId}}" type="text" />
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName="arrobaValue{{itemId}}" type="text" />
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName="unityValue{{itemId}}" type="text" />
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName="totalValue{{itemId}}" type="text" />
+      </div>
+    </div>
+    <hr />
+    <div class="row pb-3">
+      <div class="col-md-4 text-left">
+        <label>Região RBB*</label>
+        <div class="form-group">
+          <ng-template #rtRegion let-r="result" let-t="term">
+            <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+          </ng-template>
+          <input type="text" class="form-control form-input input-w-md" formControlName="regionId{{itemId}}"
+            [ngbTypeahead]="searchRegion" [resultTemplate]="rtRegion" [inputFormatter]="formatter" />
+        </div>
+      </div>
+      <div class="col-md-4 text-left">
+        <label>UF*</label>
+        <select class="form-control form-input input-w-md" formControlName="stateId{{itemId}}" (change)="loadCities()">
+          <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-4 text-left">
+        <label>Município*</label>
+        <ng-template #rtCity let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md" formControlName="cityId{{itemId}}"
+          [ngbTypeahead]="searchCity" [resultTemplate]="rtCity" [inputFormatter]="formatter" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 text-left">
+        <label>Descrição</label>
+        <textarea class="form-control" formControlName="description{{itemId}}"></textarea>
+      </div>
+      <div class="col-md-4 text-left pl-4">
+        <label>Modo do Valor unitário</label>
+        <br>
+        <input class="align-middle" type="radio" id="arrobaBase" formControlName="unitValueMode{{itemId}}" value="1">
+        <label class="pl-2 pr-4" for="arrobaBase">Calc. base no preço arroba</label>
+        <input class="align-middle" type="radio" id="defined" formControlName="unitValueMode{{itemId}}" value="2">
+        <label class="pl-2" for="defined">Definido</label>
+        <br>
+        <input class="align-middle" type="checkbox" id="isHerdReadyCommercialization"
+          (change)="loadHerdCommercialization()" formControlName="isHerdReadyCommercialization{{itemId}}" value="1">
+        <label class="pl-2" for="isHerdReadyCommercialization">Rebanho Pronto para Comercialização</label><br>
+      </div>
+      <div class="col-md-4">
+        <label>Escolha entre</label>
+        <br>
+        <input class="align-middle" type="radio" id="effective" formControlName="herdMode{{itemId}}" value="1">
+        <label class="pl-2 pr-4" for="effective">Efetivo</label>
+        <input class="align-middle" type="radio" id="toDefine" formControlName="herdMode{{itemId}}" value="2">
+        <label class="pl-2" for="toDefine">A Definir</label><br>
+        <br>
+        <label>Referência RBB: Preço Atual (R$ / @): <strong>{{ precoAtualRBB }}</strong></label><br>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col" *ngIf="isHerdReadyCommercialization">
+        <label>Data Comercialização</label>
+        <input class="form-control" formControlName="commercializationDate{{itemId}}" type="text" />
+      </div>
+      <div class="col" *ngIf="isHerdReadyCommercialization">
+        <label>Justificativa</label>
+        <input class="form-control" formControlName="justification{{itemId}}" type="text" />
+      </div>
+      <div class="col actions-right">
+        <button (click)="addOrEdit()" class="btn btn-primary btn-radius m-auto">Adicionar</button>
+        <i (click)="cancelAddOrEdit()" class="fa fa-trash-alt icon-action m-auto"></i>
+      </div>
+    </div>
+  </td>
+</tr>

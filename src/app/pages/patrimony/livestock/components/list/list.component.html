@@ -1,0 +1,118 @@
+<div class="d-flex bd-highlight">
+  <div class="bd-highlight">
+    <select class="form-control" [formControl]="downloadType" (change)="doDownload()">
+      <option value="0" disabled selected>Exportar</option>
+      <option value="1">Imprimir</option>
+      <option value="2">PDF</option>
+      <option value="3">Excel</option>
+    </select>
+  </div>
+
+  <div class="ml-auto bd-highlight">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" [formControl]="search" (change)="loadData()" placeholder="Pesquisar">
+    </div>
+  </div>
+</div>
+
+<table class="table" [ngClass]="{'table-form-open' : isOpen}">
+  <thead class="borderless">
+    <tr>
+      <th>TIPO</th>
+      <th>REBANHO</th>
+      <th>QUANTIDADE</th>
+      <th>PESO MÉDIO (@)</th>
+      <th>VALOR / ARROBA(R$)</th>
+      <th>VALOR UNITÁRIO (R$)</th>
+      <th>VALOR TOTAL</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <app-livestock-form *ngIf="isOpen" [(isOpen)]="isOpen" (loadData)="loadData()" class="show-component">
+    </app-livestock-form>
+    <ng-container
+      *ngFor="let livestock of livestocks | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }">
+      <tr *ngIf="!livestock.isEditing">
+        <td>{{ translateLivestockType(livestock.livestockType) }}</td>
+        <td>{{ translateHerdType(livestock.herdType) }}</td>
+        <td>{{ livestock.quantity }}</td>
+        <td>{{ livestock.weightAverage }}</td>
+        <td>{{ livestock.arrobaValue }}</td>
+        <td>{{ livestock.unityValue }}</td>
+        <td>{{ livestock.totalValue }}</td>
+        <td *ngIf="!isOpen">
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(livestock.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(livestock.id || '')"></i>
+            <i class="icon-action fa fa-chevron-down" (click)="expandListDetails(livestock.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-livestock-form *ngIf="livestock.isEditing" (loadData)="loadData()" [(isOpen)]="livestock.isEditing"
+        [livestock]="livestock" class="show-component">
+      </app-livestock-form>
+
+      <tr *ngIf="livestock.expanded">
+        <td>
+          <div class="row-expanded">
+            <label class="expanded-title mb-0">Região RBB *</label>
+            <label>{{ livestock.region?.name }}</label>
+          </div>
+        </td>
+        <td>
+          <div class="row-expanded">
+            <label class="expanded-title mb-0">UF *</label>
+            <label>{{ livestock.state?.name }}</label>
+          </div>
+        </td>
+        <td>
+          <div class="row-expanded">
+            <label class="expanded-title mb-0">Município *</label>
+            <label>{{ livestock.city?.name }}</label>
+          </div>
+        </td>
+        <td>
+          <div class="row-expanded">
+            <label class="expanded-title mb-0">Modo de valor unitário *</label>
+            <label>{{ translateUnitValueMode(livestock.unitValueMode) }}</label>
+          </div>
+        </td>
+        <td>
+          <div class="row-expanded">
+            <div class="row-expanded">
+              <label class="expanded-title mb-0">Efetivo ou A definir *</label>
+              <label>{{ translateHerdMode(livestock.herdMode) }}</label>
+            </div>
+          </div>
+        </td>
+        <td></td>
+      </tr>
+      <tr *ngIf="livestock.expanded">
+        <td>Descrição: {{ livestock.justification }}</td>
+        <td>
+          <input class="align-middle" type="checkbox" [attr.disabled]="true" checked
+            *ngIf="livestock.isHerdReadyCommercialization">
+          <input class="align-middle" type="checkbox" [attr.disabled]="true"
+            *ngIf="!livestock.isHerdReadyCommercialization">
+          <label class="pl-2">Rebanho Pronto para Comercialização</label><br>
+        </td>
+        <td>Referência RBB: Preço Atual (R$ / @): 209.8814</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
+</div>
+
+<div class="float">
+  <button (click)="loadAdd()" class="btn-float btn btn-primary primary-background-color">
+    <span class="txt-btn-float">
+      Adicionar Semovente
+    </span>
+    <i class="fas fa-plus icon-btn-float"></i>
+  </button>
+</div>

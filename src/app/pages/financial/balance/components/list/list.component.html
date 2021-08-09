@@ -1,0 +1,226 @@
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th></th>
+      <th>ATUAL<br>{{ tableHeadersIndex[0]}}</th>
+      <th>{{ tableHeadersIndex[1]}}</th>
+      <th>{{ tableHeadersIndex[2]}}</th>
+      <th>PROJEÇÕES <br> {{ tableHeadersIndex[3]}}</th>
+      <th>{{ tableHeadersIndex[4]}}</th>
+      <th>{{ tableHeadersIndex[5]}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <app-balance-form *ngIf='isOpen' [(isOpen)]="isOpen" (loadData)="loadData()" class="show-component">
+    </app-balance-form>
+    <ng-container
+    *ngFor="let item of fixedLong | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }"
+    >
+      <tr *ngIf="!item.isEditingFixedLong">
+        <td>{{ item.balance?.name }}</td>
+        <td>{{ item.projections[0].value }}</td>
+        <td>{{ item.projections[1].value }}</td>
+        <td>{{ item.projections[2].value }}</td>
+        <td>{{ item.projections[3].value }}</td>
+        <td>{{ item.projections[4].value }}</td>
+        <td>{{ item.projections[5].value }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(item.id || '', 0)"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt"(click)="delete(item.id || '')" ></i>
+          </div>
+        </td>
+      </tr>
+      <app-balance-form *ngIf="item.isEditingFixedLong" (loadData)="loadData()" [(isOpen)]="item.isEditingFixedLong" [balance]="item"
+      class="show-component">
+      </app-balance-form>
+    </ng-container>
+
+    <tr class="section-header">
+      <td><strong>Total Ativos Fixos</strong></td>
+      <td> {{ getTotal(fixedLong, 0) }} </td>
+      <td> {{ getTotal(fixedLong, 1) }} </td>
+      <td> {{ getTotal(fixedLong, 2) }} </td>
+      <td> {{ getTotal(fixedLong, 3) }} </td>
+      <td> {{ getTotal(fixedLong, 4) }} </td>
+      <td> {{ getTotal(fixedLong, 5) }} </td>
+    </tr>
+
+    <ng-container
+    *ngFor=" let item of fixedShort | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }"
+    >
+      <tr *ngIf="!item.isEditingFixedShort">
+        <td>{{ item.balance?.name }}</td>
+        <td>{{ item.projections[0].value }}</td>
+        <td>{{ item.projections[1].value }}</td>
+        <td>{{ item.projections[2].value }}</td>
+        <td>{{ item.projections[3].value }}</td>
+        <td>{{ item.projections[4].value }}</td>
+        <td>{{ item.projections[5].value }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(item.id || '', 1)"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-balance-form *ngIf="item.isEditingFixedShort" (loadData)="loadData()" [(isOpen)]="item.isEditingFixedShort" [balance]="item"
+      class="show-component">
+      </app-balance-form>
+    </ng-container>
+
+    <tr>
+      <td><strong>Total Ativos de <br> Curto Prazo</strong></td>
+      <td> {{ getTotal(fixedShort, 0) }} </td>
+      <td> {{ getTotal(fixedShort, 1) }} </td>
+      <td> {{ getTotal(fixedShort, 2) }} </td>
+      <td> {{ getTotal(fixedShort, 3) }} </td>
+      <td> {{ getTotal(fixedShort, 4) }} </td>
+      <td> {{ getTotal(fixedShort, 5) }} </td>
+    </tr>
+
+    <tr>
+      <td><strong>Ativos Totais</strong></td>
+      <td>{{ getAllTotal(fixedLong, fixedShort, 0) }}</td>
+      <td>{{ getAllTotal(fixedLong, fixedShort, 1) }}</td>
+      <td>{{ getAllTotal(fixedLong, fixedShort, 2) }}</td>
+      <td>{{ getAllTotal(fixedLong, fixedShort, 3) }}</td>
+      <td>{{ getAllTotal(fixedLong, fixedShort, 4) }}</td>
+      <td>{{ getAllTotal(fixedLong, fixedShort, 5) }}</td>
+    </tr>
+
+    <ng-container
+    *ngFor=" let item of passiveLong | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }"
+    >
+      <tr *ngIf="!item.isEditingPassiveLong">
+        <td>{{ item.balance?.name }}</td>
+        <td>{{ item.projections[0].value }}</td>
+        <td>{{ item.projections[1].value }}</td>
+        <td>{{ item.projections[2].value }}</td>
+        <td>{{ item.projections[3].value }}</td>
+        <td>{{ item.projections[4].value }}</td>
+        <td>{{ item.projections[5].value }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(item.id || '', 2)"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-balance-form *ngIf="item.isEditingPassiveLong" (loadData)="loadData()" [(isOpen)]="item.isEditingPassiveLong" [balance]="item"
+      class="show-component">
+      </app-balance-form>
+    </ng-container>
+
+    <!-- <tr *ngIf="!passiveLongLength"> -->
+    <tr>
+      <td><strong>Total Passivo <br> longo prazo</strong></td>
+      <td> {{ getTotal(passiveLong, 0) }} </td>
+      <td> {{ getTotal(passiveLong, 1) }} </td>
+      <td> {{ getTotal(passiveLong, 2) }} </td>
+      <td> {{ getTotal(passiveLong, 3) }} </td>
+      <td> {{ getTotal(passiveLong, 4) }} </td>
+      <td> {{ getTotal(passiveLong, 5) }} </td>
+    </tr>
+
+    <ng-container
+    *ngFor=" let item of passiveShort | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }"
+    >
+      <tr *ngIf="!item.isEditingPassiveShort">
+        <td>{{ item.balance?.name }}</td>
+        <td>{{ item.projections[0].value }}</td>
+        <td>{{ item.projections[1].value }}</td>
+        <td>{{ item.projections[2].value }}</td>
+        <td>{{ item.projections[3].value }}</td>
+        <td>{{ item.projections[4].value }}</td>
+        <td>{{ item.projections[5].value }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(item.id || '', 3)"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-balance-form *ngIf="item.isEditingPassiveShort" (loadData)="loadData()" [(isOpen)]="item.isEditingPassiveShort" [balance]="item"
+      class="show-component">
+      </app-balance-form>
+    </ng-container>
+
+    <!-- <tr *ngIf="!passiveShortLength"> -->
+    <tr>
+      <td><strong>Total Passivo <br> curto prazo</strong></td>
+      <td> {{ getTotal(passiveShort, 0) }} </td>
+      <td> {{ getTotal(passiveShort, 1) }} </td>
+      <td> {{ getTotal(passiveShort, 2) }} </td>
+      <td> {{ getTotal(passiveShort, 3) }} </td>
+      <td> {{ getTotal(passiveShort, 4) }} </td>
+      <td> {{ getTotal(passiveShort, 5) }} </td>
+    </tr>
+
+    <ng-container
+    *ngFor=" let item of othersPassive | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }"
+    >
+      <tr *ngIf="!item.isEditingOthersPassive">
+        <td>{{ item.balance?.name }}</td>
+        <td>{{ item.projections[0].value }}</td>
+        <td>{{ item.projections[1].value }}</td>
+        <td>{{ item.projections[2].value }}</td>
+        <td>{{ item.projections[3].value }}</td>
+        <td>{{ item.projections[4].value }}</td>
+        <td>{{ item.projections[5].value }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(item.id || '', 4)"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-balance-form *ngIf="item.isEditingOthersPassive" (loadData)="loadData()" [(isOpen)]="item.isEditingOthersPassive" [balance]="item"
+      class="show-component">
+      </app-balance-form>
+    </ng-container>
+
+    <tr>
+      <td><strong>Passivo Total</strong></td>
+      <td>{{ getAllTotal(passiveLong, passiveShort, 0) }}</td>
+      <td>{{ getAllTotal(passiveLong, passiveShort, 1) }}</td>
+      <td>{{ getAllTotal(passiveLong, passiveShort, 2) }}</td>
+      <td>{{ getAllTotal(passiveLong, passiveShort, 3) }}</td>
+      <td>{{ getAllTotal(passiveLong, passiveShort, 4) }}</td>
+      <td>{{ getAllTotal(passiveLong, passiveShort, 5) }}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th><strong>Índices</strong></th>
+      <th>ATUAL<br>{{ tableHeadersIndex[0]}}</th>
+      <th>{{ tableHeadersIndex[1]}}</th>
+      <th>{{ tableHeadersIndex[2]}}</th>
+      <th>PROJEÇÕES <br> {{ tableHeadersIndex[3]}}</th>
+      <th>{{ tableHeadersIndex[4]}}</th>
+      <th>{{ tableHeadersIndex[5]}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let item of index">
+      <tr>
+        <td>{{ item.index.name }}</td>
+        <td>{{ item.projections[0].value }}</td>
+        <td>{{ item.projections[1].value }}</td>
+        <td>{{ item.projections[2].value }}</td>
+        <td>{{ item.projections[3].value }}</td>
+        <td>{{ item.projections[4].value }}</td>
+        <td>{{ item.projections[5].value }}</td>
+        <td>{{ item.projections[6].value }}</td>
+        <td>{{ item.projections[7].value }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+

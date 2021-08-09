@@ -1,0 +1,172 @@
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th></th>
+      <th>ATUAL<br>{{ tableHeadersIndex[0]}}</th>
+      <th>{{ tableHeadersIndex[2]}}</th>
+      <th>{{ tableHeadersIndex[4]}}</th>
+      <th>PROJEÇÕES <br> {{ tableHeadersIndex[1]}}</th>
+      <th>{{ tableHeadersIndex[3]}}</th>
+      <th>{{ tableHeadersIndex[5]}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="section-header">
+      <td><strong>Receita Bruta</strong></td>
+      <td> {{ getTotal(cashFlowRevenue, 0) }} </td>
+      <td> {{ getTotal(cashFlowRevenue, 1) }} </td>
+      <td> {{ getTotal(cashFlowRevenue, 2) }} </td>
+      <td> {{ getTotal(cashFlowRevenue, 3) }} </td>
+      <td> {{ getTotal(cashFlowRevenue, 4) }} </td>
+      <td> {{ getTotal(cashFlowRevenue, 5) }} </td>
+      <td>
+        <div>
+          <i [class]="!isGrossRevenueOpen ? 'fas fa-plus-circle icon-action' : 'fas fa-minus-circle icon-action' "
+            (click)="showMore(0)"></i>
+        </div>
+      </td>
+    </tr>
+    <app-cash-flow-form *ngIf="isOpen" [(isOpen)]="isOpen" (loadData)="loadData()" class="show-component">
+    </app-cash-flow-form>
+    <ng-container
+      *ngFor='let item of cashFlowRevenue | paginate: { itemsPerPage: paginationRevenue.pageSize, currentPage: paginationRevenue.page, totalItems: paginationRevenue.count }'>
+      <tr *ngIf='isGrossRevenueOpen && !item.isEditingRevenue'>
+        <td>{{ item.asset?.name }}</td>
+        <td>{{ item.projections[0]?.value }}</td>
+        <td>{{ item.projections[1]?.value }}</td>
+        <td>{{ item.projections[2]?.value }}</td>
+        <td>{{ item.projections[3]?.value }}</td>
+        <td>{{ item.projections[4]?.value }}</td>
+        <td>{{ item.projections[5]?.value }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEditRevenue(item.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-cash-flow-form *ngIf="item.isEditingRevenue" (loadData)="loadData()" [(isOpen)]="item.isEditingRevenue"
+        [cashFlow]="item" class="show-component">
+      </app-cash-flow-form>
+    </ng-container>
+    <br>
+    <br>
+    <tr class="section-header">
+      <td><strong>Custo Total</strong></td>
+      <td> {{ getTotal(cashFlowCost, 0) }} </td>
+      <td> {{ getTotal(cashFlowCost, 1) }} </td>
+      <td> {{ getTotal(cashFlowCost, 2) }} </td>
+      <td> {{ getTotal(cashFlowCost, 3) }} </td>
+      <td> {{ getTotal(cashFlowCost, 4) }} </td>
+      <td> {{ getTotal(cashFlowCost, 5) }} </td>
+      <td>
+        <div>
+          <i [class]="!isTotalCostOpen ? 'fas fa-plus-circle icon-action' : 'fas fa-minus-circle icon-action' "
+          (click)="showMore(1)"></i>
+        </div>
+      </td>
+    </tr>
+    <ng-container
+      *ngFor='let item of cashFlowCost | paginate: { itemsPerPage: paginationCost.pageSize, currentPage: paginationCost.page, totalItems: paginationCost.count }'>
+      <tr *ngIf='isTotalCostOpen && !item.isEditingCost'>
+        <td>{{ item.asset?.name }}</td>
+        <td>{{ item.projections[0]?.value }}</td>
+        <td>{{ item.projections[1]?.value }}</td>
+        <td>{{ item.projections[2]?.value }}</td>
+        <td>{{ item.projections[3]?.value }}</td>
+        <td>{{ item.projections[4]?.value }}</td>
+        <td>{{ item.projections[5]?.value }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEditCost(item.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-cash-flow-form *ngIf="item.isEditingCost" (loadData)="loadData()" [(isOpen)]="item.isEditingCost"
+        [cashFlow]="item" class="show-component">
+      </app-cash-flow-form>
+    </ng-container>
+    <br>
+    <br>
+    <tr class="section-header">
+      <td><strong>Ebitda</strong></td>
+      <td> {{ getTotal(cashFlowEbitda, 0) }} </td>
+      <td> {{ getTotal(cashFlowEbitda, 1) }} </td>
+      <td> {{ getTotal(cashFlowEbitda, 2) }} </td>
+      <td> {{ getTotal(cashFlowEbitda, 3) }} </td>
+      <td> {{ getTotal(cashFlowEbitda, 4) }} </td>
+      <td> {{ getTotal(cashFlowEbitda, 5) }} </td>
+      <td>
+        <div>
+          <i [class]="!isEbitdaOpen ? 'fas fa-plus-circle icon-action' : 'fas fa-minus-circle icon-action' "
+          (click)="showMore(2)"></i>
+        </div>
+      </td>
+    </tr>
+    <ng-container
+      *ngFor='let item of cashFlowEbitda | paginate: { itemsPerPage: paginationEbitda.pageSize, currentPage: paginationEbitda.page, totalItems: paginationEbitda.count }'>
+      <tr *ngIf='isEbitdaOpen && !item.isEditingEbitda'>
+        <td>{{ item.asset?.name }}</td>
+        <td>{{ item.projections[0]?.value }}</td>
+        <td>{{ item.projections[1]?.value }}</td>
+        <td>{{ item.projections[2]?.value }}</td>
+        <td>{{ item.projections[3]?.value }}</td>
+        <td>{{ item.projections[4]?.value }}</td>
+        <td>{{ item.projections[5]?.value }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEditEbitda(item.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-cash-flow-form *ngIf="item.isEditingEbitda" (loadData)="loadData()" [(isOpen)]="item.isEditingEbitda"
+        [cashFlow]="item" class="show-component">
+      </app-cash-flow-form>
+    </ng-container>
+  </tbody>
+</table>
+<table class="table">
+  <tbody>
+    <ng-container *ngFor="let item of cashFlowIndicator">
+      <tr [class]="item.isTotal ? 'section-header-blue' : '' ">
+        <td>{{ item.asset?.name }}</td>
+        <td>{{ item.projections[0].value }}</td>
+        <td>{{ item.projections[1].value }}</td>
+        <td>{{ item.projections[2].value }}</td>
+        <td>{{ item.projections[3].value }}</td>
+        <td>{{ item.projections[4].value }}</td>
+        <td>{{ item.projections[5].value }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th><strong>Índices</strong></th>
+      <th>ATUAL<br>{{ tableHeadersIndex[0]}}</th>
+      <th>{{ tableHeadersIndex[1]}}</th>
+      <th>{{ tableHeadersIndex[2]}}</th>
+      <th>PROJEÇÕES <br> {{ tableHeadersIndex[3]}}</th>
+      <th>{{ tableHeadersIndex[4]}}</th>
+      <th>{{ tableHeadersIndex[5]}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let item of index">
+      <tr>
+        <td>{{ item.index.name }}</td>
+        <td>{{ item.projections[0].value }}</td>
+        <td>{{ item.projections[1].value }}</td>
+        <td>{{ item.projections[2].value }}</td>
+        <td>{{ item.projections[3].value }}</td>
+        <td>{{ item.projections[4].value }}</td>
+        <td>{{ item.projections[5].value }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

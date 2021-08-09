@@ -1,0 +1,88 @@
+.sidenav {
+  height: 100%;
+  width: 70px;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 101, 28, 1);
+  overflow-x: hidden;
+  /* padding-top: 20px; */
+}
+
+.sidenav a {
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  border-bottom: 1px white solid;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.sidenav a:first-child {
+  background-color:rgba(19, 27, 170, 1);
+  width: 100%;
+  margin-left: 0;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border: 0;
+}
+
+.navbar {
+  width: 100%;
+
+}
+
+.header-container {
+  background-color: white;
+  padding-bottom: 5px;
+}
+
+.header-container .breadcrumb {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.header-client, .header-client-collapsed {
+  background-color: white;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 5px;
+}
+
+
+.breadcrumb-item, .breadcrumb-item a{
+  font-weight: 200;
+  font-size: 12px;
+  color: #AAAAAA;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  color: #AAAAAA;
+}
+
+.user-name {
+  color: white;
+  margin-left: 5px;
+}
+
+.user-name i {
+  margin-left: 30px;
+  margin-top: 1px;
+}
+
+.user {
+  margin-right: 6%;
+  padding: 2px 10px;
+  border-radius: 5px;
+  background-color: rgba(81, 107, 195, 1);
+}
+
+.user img  {
+  border-radius: 16px;
+}

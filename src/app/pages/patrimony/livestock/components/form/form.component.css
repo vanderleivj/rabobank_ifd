@@ -1,0 +1,47 @@
+th:nth-child(1), th:nth-child(2) {
+  width: 170px;
+  text-align: start;
+}
+
+.input-column {
+ padding-right: 10px;
+ width: 160px;
+}
+
+.input-column:nth-child(1) {
+  width: 150px;
+  margin-right: 18px;
+}
+
+.input-column:nth-child(2) {
+  width: 150px;
+  margin-right: 30px;
+}
+
+.input-column:nth-child(3) {
+  width: 100px;
+  margin-right: 33px;
+}
+
+.input-column:nth-child(4) {
+  width: 100px;
+  margin-right: 65px;
+}
+
+.input-column:nth-child(5) {
+  width: 100px;
+  margin-right: 85px;
+}
+
+.input-column:nth-child(6) {
+  width: 100px;
+  margin-right: 50px;
+}
+
+.input-column:nth-child(7) {
+  width: 125px;
+}
+
+label {
+  font-size: 12px;
+}

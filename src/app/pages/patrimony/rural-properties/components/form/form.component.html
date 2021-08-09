@@ -1,0 +1,24 @@
+<tr class="form-tr" [formGroup]="propertiesForm">
+  <td><input class="form-control form-input input-w-sm" placeholder="Ex: 992" formControlName="registration{{itemId}}"
+      type="text" /></td>
+  <td>
+    <input class="form-control form-input input-w-md input-h-sm my-2" placeholder="Nome imóvel"
+      formControlName="farmName{{itemId}}" type="text" />
+    <div class="form-group">
+      <ng-template #rt let-r="result" let-t="term">
+        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+      </ng-template>
+      <input id="typeahead-basic" type="text" class="form-control form-input input-w-md input-h-sm my-2"
+        placeholder="Cidade" formControlName="cityId{{itemId}}" [ngbTypeahead]="search" [resultTemplate]="rt"
+        [inputFormatter]="formatter" />
+    </div>
+  </td>
+  <td><input class="form-control form-input input-w-md" formControlName="portion{{itemId}}" type="text" /></td>
+  <td><input class="form-control form-input input-w-md" formControlName="area{{itemId}}" type="text" /></td>
+  <td><input class="form-control form-input input-w-md" formControlName="value{{itemId}}" type="text" /></td>
+  <td><input class="form-control form-input input-w-md" formControlName="totalValue{{itemId}}" type="text" /></td>
+  <td class="td-action px-4">
+    <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+    <i (click)="cancelAddOrEdit()" class="fa fa-trash-alt icon-action"></i>
+  </td>
+</tr>

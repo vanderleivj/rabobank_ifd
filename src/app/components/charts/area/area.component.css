@@ -1,0 +1,86 @@
+
+.container {
+  display: -webkit-inline-box;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.own-area {
+  margin-bottom: 30px;
+}
+
+.title-legend {
+  font-size: 14px;
+  color: #949494;
+  font-family: 'Roboto-Regular', 'Roboto', sans-serif;
+  margin-bottom: 5px;
+}
+
+.own-area-value, .leased-value {
+  font-family: 'Roboto-Medium', 'Roboto Medium', 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.own-area-value {
+  font-size: 32px;
+  color: #131BAA;
+}
+
+.own-area-value span, .leased-value span {
+  font-size: 16px;
+}
+
+.leased-value {
+  font-size: 24px;
+  color: #ED9A0D;
+}
+
+.leased-value span {
+
+}
+
+.container-chart {
+  position: absolute;
+  left: 13vw;
+  top: 1vw;
+}
+
+.container-chart canvas {
+  height: 160px !important;
+}
+
+.container-title {
+  z-index: 999;
+  position: absolute;
+  align-self: center;
+  color: #8C8C8C;
+  width: 100%;
+  top: 57px;
+}
+
+.chart-title-value, .chart-title {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.chart-title-value span {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Roboto-Medium', 'Roboto Medium', sans-serif;
+}
+
+.chart-title-value {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: 'Roboto-Regular', 'Roboto', sans-serif;
+}
+
+.chart-title {
+  font-size: 13px;
+}
+
+

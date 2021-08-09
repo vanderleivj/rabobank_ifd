@@ -1,0 +1,37 @@
+.live-stock-card-title {
+  font-weight: 200;
+  font-size: 14px;
+  color: #797979;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.live-stock-card-info-title {
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 200;
+  color: #797979;
+  text-align: end;
+}
+
+.live-stock-card-info-qtd {
+  color: rgba(31, 37, 193, 0.607843137254902);
+  font-size: 26px;
+  font-weight: 500;
+  text-align: end;
+}
+
+.live-stock-card-info-value {
+  color: #7F7F7F;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: end;
+}
+
+.livestock-image {
+
+}
+
+p  {
+  margin-bottom: 0;
+}

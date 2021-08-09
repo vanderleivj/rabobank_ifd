@@ -1,0 +1,23 @@
+.fixed-bottom {
+  position: relative !important;
+}
+
+.footer {
+  box-sizing: border-box;
+  border-width: 2px;
+  border-color: rgba(242, 242, 242, 1);
+  border-style: solid;
+  box-shadow: none;
+  height: 75px;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.end-of-page {
+  padding-top: 25px;
+}

@@ -1,0 +1,14 @@
+<div>
+  <div class="mt-4">
+    <div class="row justify-content-between">
+      <h5 class="title-page"><strong>Dívidas </strong> Cadastrados na Proposta ({{quantity}})</h5>
+    </div>
+    <hr>
+  </div>
+  <div class="mt-4">
+    <app-chart-group-debts></app-chart-group-debts>
+  </div>
+  <div class="mt-4">
+    <app-debts-list [(quantity)]="quantity"></app-debts-list>
+  </div>
+</div>

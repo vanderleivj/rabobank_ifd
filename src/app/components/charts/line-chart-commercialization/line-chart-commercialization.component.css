@@ -1,0 +1,24 @@
+p {
+  margin-bottom: 0;
+}
+
+.container-title {
+  height: 100px;
+  padding: 10px 10px 0 8px;
+}
+
+.container-chart canvas {
+  height: 96px !important;
+}
+
+.date-legend {
+  color: #797979;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.total-value-legend, .title-legend {
+  color: #797979;
+  font-size: 14px;
+  font-weight: 500;
+}

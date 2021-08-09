@@ -1,0 +1,33 @@
+.input-w-md {
+  width: 100%;
+}
+.custom-column:nth-child(1) {
+  flex: 0 0 16.5%;
+  max-width: 16.5%;
+  padding-right: 35px;
+}
+
+.custom-column:nth-child(2) {
+  flex: 0 0 19%;
+  max-width: 19%;
+}
+
+.custom-column:nth-child(3) {
+  flex: 0 0 8.5%;
+  max-width: 8.5%;
+}
+
+.custom-column:nth-child(4) {
+  flex: 0 0 20.5%;
+  max-width: 20.5%;
+}
+
+
+.custom-column:nth-child(5) {
+  flex: 0 0 10.5%;
+  max-width: 10.5%;
+}
+
+label {
+  font-size: 12px;
+}

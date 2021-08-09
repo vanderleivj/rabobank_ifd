@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col col-lg-2">
+    <select class="form-control" [formControl]="downloadType" (change)="doDownload()">
+      <option value="0" disabled selected>Exportar</option>
+      <option value="1">Imprimir</option>
+      <option value="2">PDF</option>
+      <option value="3">Excel</option>
+    </select>
+  </div>
+
+  <div class="ml-auto bd-highlight">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" [formControl]="search" (change)="loadData()" placeholder="Pesquisar">
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>MERCADORIA</th>
+      <th>SAFRA</th>
+      <th>ÁREA CULTIVO</th>
+      <th>CUSTO PRODUÇÃO (R$/HA)</th>
+      <th>% CUSTO OCORRIDO</th>
+      <th>SALDO A CONSIDERAR</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <app-others-goods-rights-harvest-form *ngIf="isOpen" [(isOpen)]="isOpen" (loadData)="loadData()" class="show-component">
+    </app-others-goods-rights-harvest-form>
+    <ng-container *ngFor="let harvest of othersGoodHarvest | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }  "> <!-- | searchHarvest: search.value -->
+      <tr *ngIf="!harvest.isEditing">
+        <td>{{ harvest.commodityType.name }}</td>
+        <td>{{ harvest.harvest }}</td>
+        <td>{{ harvest.cultivationArea }}</td>
+        <td>{{ harvest.productionCost }}</td>
+        <td>{{ harvest.occurredCost }}</td>
+        <td>{{ harvest.balance }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(harvest.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(harvest.id || '')"></i>
+            <i class="icon-action fa fa-chevron-up" (click)="expandListDetails(harvest.id || '')" *ngIf="harvest.expanded"></i>
+            <i class="icon-action fa fa-chevron-down" (click)="expandListDetails(harvest.id || '')" *ngIf="!harvest.expanded"></i>
+          </div>
+        </td>
+      </tr>
+      <app-others-goods-rights-harvest-form *ngIf="harvest.isEditing" (loadData)="loadData()" [(isOpen)]="harvest.isEditing"
+        [othersGoodsRightsHarvest]="harvest" class="show-component">
+      </app-others-goods-rights-harvest-form>
+
+      <tr *ngIf="harvest.expanded">
+        <td colspan="7" >
+          <div class="row">
+            <div class="col">
+              <strong>Custo Colheita:</strong>Não informado
+            </div>
+            <div class="col">
+              <strong>Produtividade (R$/HA):</strong>Não informado
+            </div>
+            <div class="col">
+              <strong>Preço (R$/HA):</strong>Não informado
+            </div>
+          </div>
+        </td>
+      </tr>
+
+
+
+    </ng-container>
+  </tbody>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
+</div>
+
+<div class="float">
+  <button (click)="loadAdd()" class="btn-float btn btn-primary primary-background-color">
+    <span class="txt-btn-float">
+      Adicionar Novo
+    </span>
+    <i class="fas fa-plus icon-btn-float"></i>
+  </button>
+</div>

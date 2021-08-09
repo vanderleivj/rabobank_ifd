@@ -1,0 +1,7 @@
+table tr:nth-child(2n) {
+  border: 1.5px solid #cfcfcf;
+  border-left: 1px;
+  border-left-style: solid;
+  border-left-color: #cfcfcf;
+  border-right: 0;
+}

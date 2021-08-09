@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col col-lg-2">
+    <select class="form-control" [formControl]="downloadType" (change)="doDownload()">
+      <option value="0" disabled selected>Exportar</option>
+      <option value="1">Imprimir</option>
+      <option value="2">PDF</option>
+      <option value="3">Excel</option>
+    </select>
+  </div>
+
+  <div class="ml-auto bd-highlight">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" [formControl]="search" (change)="loadData()" placeholder="Pesquisar">
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ATIVO</th>
+      <th>VALOR TOTAL</th>
+      <th>DESÁGIO (%)</th>
+      <th>VALOR COM DESÁGIO</th>
+      <th>DESCRIÇÃO</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <app-others-goods-rights-financial-form *ngIf="isOpen" [(isOpen)]="isOpen" (loadData)="loadData()"
+      class="show-component">
+    </app-others-goods-rights-financial-form>
+    <ng-container *ngFor="let financial of othersGoodFinancial | paginate: {
+      itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count
+    }">
+      <tr *ngIf="!financial.isEditing">
+        <td>{{ financial.asset }}</td>
+        <td>{{ financial.totalAmount }}</td>
+        <td>{{ financial.discounts }}</td>
+        <td>{{ financial.discountsTotalAmount }}</td>
+        <!-- <td>{{ financial.totalAmount * (1-(financial.discounts / 100))  }}</td> -->
+        <!-- <td>{{ financial.totalAmount - (financial.totalAmount*(financial.discounts / 100))  }}</td> -->
+        <td>{{ financial.features }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-calendar-alt" (click)="expandListDetails(financial.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(financial.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(financial.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-others-goods-rights-financial-form *ngIf="financial.isEditing" (loadData)="loadData()"
+        [(isOpen)]="financial.isEditing" [othersGoodsRightsFinancial]="financial" class="show-component">
+      </app-others-goods-rights-financial-form>
+
+      <tr *ngIf="financial.expanded">
+        <td colspan="7" class="row-expanded">
+          <div class="text-left ml-2">
+            <label>Distribuição Mensal</label><i class="icon-action fa fa-chevron-up ml-2"
+              (click)="expandListDetails(financial.id || '')"></i>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <label>Periodo</label>
+            </div>
+            <div class="col-md-6 text-right">
+              <label>Valor (R$)</label>
+            </div>
+          </div>
+          <ng-container *ngFor='let distribution of financial.distributions'>
+            <div class="row distribution-row">
+              <div class="col-md-6 text-left distribution-row-text">
+                <label>{{ distribution.period }}</label>
+              </div>
+              <div class="col-md-6 text-right distribution-row-text">
+                <label>{{ distribution.amount }}</label>
+              </div>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+
+    </ng-container>
+  </tbody>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
+</div>
+
+<div class="float">
+  <button (click)="loadAdd()" class="btn-float btn btn-primary primary-background-color">
+    <span class="txt-btn-float">
+      Adicionar Novo
+    </span>
+    <i class="fas fa-plus icon-btn-float"></i>
+  </button>
+</div>

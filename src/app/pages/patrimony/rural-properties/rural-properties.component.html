@@ -1,0 +1,48 @@
+<div>
+  <div class="mt-4">
+    <h5><strong>Imóveis Rurais</strong> Cadastrados na Proposta (1234)</h5>
+    <hr>
+    <div class="row">
+      <div class="col-5 pr-2">
+        <div class="shadow-sm card">
+          <div class="card-body">
+            <app-area chartId='area-chart' [ownArea]='ownArea' [leseadArea]='leseadArea'></app-area>
+          </div>
+        </div>
+      </div>
+      <div class="col-7 pl-2">
+        <div class="row">
+          <div class="col pr-2">
+            <div class="shadow-sm card">
+              <div class="card-body line-chart-container">
+                <app-line-chart
+                  chartId='line-own-chart'
+                  [chartData]="ownAreaChartData"
+                  [chartLabels]="ownAreaChartLabels"
+                  chartTitle="Valor em área própria"
+                  darkColor="#3DC2A8"
+                  lightColor="#e4f4f1"></app-line-chart>
+              </div>
+            </div>
+          </div>
+          <div class="col pl-2">
+            <div class="shadow-sm card">
+              <div class="card-body line-chart-container">
+                <app-line-chart
+                  chartId='line-leased-chart'
+                  [chartData]="leasedAreaChartData"
+                  [chartLabels]="leasedAreaChartLabels"
+                  chartTitle="Valor pago em área arrendada"
+                  darkColor="#BDAA66"
+                  lightColor="#faf8ef"></app-line-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5">
+    <app-rural-properties-list></app-rural-properties-list>
+  </div>
+</div>

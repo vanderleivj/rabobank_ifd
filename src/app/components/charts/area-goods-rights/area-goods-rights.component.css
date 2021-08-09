@@ -1,0 +1,69 @@
+.container {
+    display: -webkit-inline-box;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+p {
+    margin-bottom: 0;
+    justify-content: center; 
+}
+
+.soy-area, .coffee-area {
+    margin-bottom: 20px;
+}
+
+.title-legend {
+    font-size: 14px;
+    color: #949494;
+    font-family: 'Roboto-Regular', 'Roboto', sans-serif;
+    margin-top: 10px;
+}
+
+.container-title {
+  position: absolute;
+  align-self: center;
+  color: #8C8C8C;
+  width: 100%;
+  top: 60px;
+  margin-left: 100px;
+}
+
+.chart-title-value {
+    margin-left: 20px;
+}
+
+.container-values-soy {
+    margin-left: 25px;
+}
+
+.container-values-coffee {
+    margin-left: 39px;
+}
+
+.container-values-others {
+    margin-left: 77px;
+}
+
+.soy-quantity-value, .coffee-quantity-value, .others-quantity-value {
+    font-family: 'Roboto-Medium', 'Roboto', sans-serif ;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.soy-cash-value, .coffee-cash-value, .others-cash-value {
+    font-family: 'Roboto-Medium', 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+.soy-quantity-value, .soy-cash-value {
+    color: #131BAA;
+}
+
+.coffee-quantity-value, .coffee-cash-value {
+    color:#ED9A0D;
+}
+
+.others-quantity-value, .others-cash-value {
+    color:#00BFBF;
+}

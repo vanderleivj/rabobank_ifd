@@ -1,0 +1,91 @@
+<app-header></app-header>
+
+<div class="container">
+  <h4>Confira as Informações Financeiras da proposta</h4>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Breadcrumb 1</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Breadcrumb 2</li>
+    </ol>
+  </nav>
+</div>
+
+
+<div class="container container-tabs-nav">
+  <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a [className]="isComparative ? 'nav-link active' : 'nav-link'" id="pills-comparative-tab" data-toggle="pill"
+        routerLink="/financeiro/fluxo-comparativo" role="tab" aria-controls="pills-comparative" aria-selected="true">
+        Fluxo comparativo
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [className]="isCommercialization ? 'nav-link active' : 'nav-link'" id="pills-commercialization-tab"
+        data-toggle="pill" routerLink="/financeiro/comercializacao" role="tab" aria-controls="pills-commercialization"
+        aria-selected="false">
+        Produçao e<br/>comercialização
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-financing-tab" data-toggle="pill" role="tab" aria-controls="pills-financing"
+        aria-selected="false">
+        Novos financiamentos
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-Investments-tab" data-toggle="pill" role="tab" aria-controls="pills-Investments"
+        aria-selected="false">
+        Novos<br />Investimentos / Capex
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [className]="isCurrentAssets ? 'nav-link active' : 'nav-link'" id="pills-currentAssets-tab" data-toggle="pill"
+        routerLink="/financeiro/ativos-circulantes" role="tab" aria-controls="pills-currentAssets"
+        aria-selected="false">
+        Novos Ativos<br />Circulantes
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-premises-tab" data-toggle="pill" role="tab" aria-controls="pills-premises"
+        aria-selected="false">
+        Outras Premissas
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-qualitative-tab" data-toggle="pill" role="tab" aria-controls="pills-qualitative"
+        aria-selected="false">
+        Informações<br />Qualitativas / BRS
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="main-container">
+  <div class="container">
+    <div class="tab-content" id="pills-tabContent">
+      <div [className]="isComparative ? 'tab-pane fade show active' : 'tab-pane fade'" id="pills-commercialization"
+        role="tabpanel" aria-labelledby="pills-commercialization-tab">
+        <app-comparative-flow *ngIf="isComparative"></app-comparative-flow>
+      </div>
+      <div [className]="isCommercialization ? 'tab-pane fade show active' : 'tab-pane fade'"
+        id="pills-commercialization" role="tabpanel" aria-labelledby="pills-commercialization-tab">
+        <app-commercialization *ngIf="isCommercialization"></app-commercialization>
+      </div>
+      <div [className]="isCurrentAssets ? 'tab-pane fade show active' : 'tab-pane fade'" id="pills-currentAssets"
+        role="tabpanel" aria-labelledby="pills-currentAssets-tab">
+        <app-current-assets *ngIf="isCurrentAssets"></app-current-assets>
+      </div>
+      <div [className]="isCashFlow ? 'tab-pane fade show active' : 'tab-pane fade'"
+        id="pills-cash-flow" role="tabpanel" aria-labelledby="pills-cash-flow-tab">
+        <app-cash-flow *ngIf="isCashFlow"></app-cash-flow>
+      </div>
+      <div [className]="isBalanceSheet ? 'tab-pane fade show active' : 'tab-pane fade'"
+        id="pills-balance-sheet" role="tabpanel" aria-labelledby="pills-balance-sheet-tab">
+        <app-balance *ngIf="isBalanceSheet"></app-balance>
+      </div>
+      <div [className]="isAnalysis ? 'tab-pane fade show active' : 'tab-pane fade'"
+      id="pills-analyze" role="tabpanel" aria-labelledby="pills-analyze-tab">
+      <app-analyze *ngIf="isAnalysis"></app-analyze>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.card-body {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.line-chart-container {
+  padding: 0;
+  height: 196px;
+}
+
+.line-chart-all-container {
+  width: 100%;
+}
+
+.chart-container {
+  height: 100%;
+}

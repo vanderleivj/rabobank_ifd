@@ -1,0 +1,115 @@
+
+<div style="margin-top: 65px;">
+  <div class="main-container">
+    <div class="container header-client pl-5" *ngIf="!isClienteCollapsed">
+      <div class="row">
+        <div class="col-3" style="padding-top: 20px;">
+          <p class="item-header-cliente-name">Cliente: Rabobank</p>
+          <p class="name-value">{{ $any(bid$ | async).client }}</p>
+        </div>
+        <div class="col-9" style="padding-top: 20px; border-left: 3px solid #F8F8F8">
+          <div class="row">
+            <div class="col-2">
+              <p class="item-header">Proposta:</p>
+              <div class="container-proposal">
+                <i class="fas fa-chevron-left" (click)="previousProposal()"></i>
+                <p class="proposal-value">{{ $any(bid$ | async).proposal }}</p>
+                <i class="fas fa-chevron-right" (click)="nextProposal()"></i>
+              </div>
+            </div>
+            <div class="col-2">
+              <p class="item-header">Cultura Principal:</p>
+              <p class="item-value">{{ $any(bid$ | async).cultivation }}</p>
+            </div>
+            <div class="col-2">
+              <p class="item-header">Data Base:</p>
+              <p class="item-value">{{ $any(bid$ | async).date }}</p>
+            </div>
+            <div class="col-2">
+              <p class="item-header">Safra Financeira:</p>
+              <p class="item-value">{{ $any(bid$ | async).financialHarvest }}</p>
+            </div>
+            <div class="col-3">
+              <p class="item-header">Pontuação BRS:</p>
+              <p class="item-value">{{ $any(bid$ | async).pointingBRS }}</p>
+            </div>
+            <div class="col-1">
+              <a class="button-icon" (click)="handleClienteCollapse()">
+                <i class="fas fa-chevron-down"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="container header-client-collapsed pl-5" *ngIf="isClienteCollapsed">
+      <div class="row">
+        <div class="col-3">
+          <div class="row" style="padding-top: 20px;">
+            <div class="col">
+              <p class="item-header-cliente-name">Cliente:</p>
+              <p class="name-value">{{ $any(bid$ | async).client }}</p>
+            </div>
+          </div>
+          <div class="row row-proposal">
+            <div class="col">
+              <p class="item-header-cliente-name">Proposta: 1234</p>
+              <div class="container-proposal">
+                <i class="fas fa-chevron-left" (click)="previousProposal()"></i>
+                <p class="proposal-value">{{ $any(bid$ | async).proposal }}</p>
+                <i class="fas fa-chevron-right" (click)="nextProposal()"></i>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="item-header-cliente-name">Cultura Principal: Soja</p>
+              <p class="name-value">{{ $any(bid$ | async).cultivation }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-9 container-details-expanded">
+          <div class="row" style="padding-left: 30px; padding-top: 20px;">
+            <div class="col-4">
+              <p class="item-header">Ag/Regional: Centro Oeste</p>
+              <p class="item-value-ag">{{ $any(bid$ | async).agency }}</p>
+            </div>
+            <div class="col-3">
+              <p class="item-header">Data Base: 16/07/2021</p>
+              <p class="item-value">{{ $any(bid$ | async).date }}</p>
+            </div>
+            <div class="col-4">
+              <p class="item-header">Safra Financeira: 2021/2022</p>
+              <p class="item-value">{{ $any(bid$ | async).financialHarvest }}</p>
+            </div>
+            <div class="col-1">
+              <a class="button-icon" (click)="handleClienteCollapse()">
+                <i class="fas fa-chevron-up"></i>
+              </a>
+            </div>
+          </div>
+          <hr />
+          <div class="row" style="padding-left: 30px; padding-top: 10px;">
+            <div class="col-4">
+              <p class="item-header">Gerente de Contas: Rabobank</p>
+              <p class="item-value">{{ $any(bid$ | async).accountManager }}</p>
+            </div>
+            <div class="col-3">
+              <p class="item-header">Analista de Crédito: Rabobank</p>
+              <p class="item-value">{{ $any(bid$ | async).creditAnalyst }}</p>
+            </div>
+            <div class="col-4">
+              <p class="item-header">Pontuação BRS: 70</p>
+              <p class="item-value-pontuacao">{{ $any(bid$ | async).pointingBRS }} <i class="fas fa-sync-alt"></i></p>
+            </div>
+            <div class="col-1">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

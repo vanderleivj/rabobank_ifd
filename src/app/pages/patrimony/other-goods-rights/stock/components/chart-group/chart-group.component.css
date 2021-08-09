@@ -1,0 +1,9 @@
+.card-body {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.line-chart-container {
+  padding: 0;
+  height: 196px;
+}

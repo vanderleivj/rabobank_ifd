@@ -1,0 +1,24 @@
+.active {
+  background-color: rgba(237, 154, 13, 1);
+  color: white;
+}
+
+.row-expanded {
+  background: rgba(242, 242, 242, 0.392156862745098);
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+th {
+  text-align: center;
+}
+
+.table-form-open th {
+  text-align: start;
+}
+
+.table-form-open th:nth-child(1) {
+  text-align: center;
+}
+

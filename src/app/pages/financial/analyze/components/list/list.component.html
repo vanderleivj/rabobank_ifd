@@ -1,0 +1,75 @@
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th></th>
+      <th>
+        ATUAL
+        <br>
+        <strong>
+          {{ tableHeaders[0]}}
+        </strong>
+      </th>
+      <th>
+        <strong>
+          {{ tableHeaders[1] }}
+        </strong>
+      </th>
+      <th>
+        <strong>
+          {{ tableHeaders[2] }}
+        </strong>
+      </th>
+      <th>
+        <strong>
+          {{ tableHeaders[3] }}
+        </strong>
+      </th>
+      <th>
+        <strong>
+          {{ tableHeaders[4] }}
+        </strong>
+      </th>
+      <th>
+        <strong>
+          {{ tableHeaders[5] }}
+        </strong>
+      </th>
+      <th>
+        <strong>
+          {{ tableHeaders[6] }}
+        </strong>
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <app-analyze-form  *ngIf="isOpen" [(isOpen)]="isOpen" (loadData)="loadData()" class="show-component">
+    </app-analyze-form>
+    <ng-container
+      *ngFor="let item of analysis | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }">
+      <tr *ngIf='!item.isEditing'>
+        <td>{{ item.accountType?.name }}</td>
+        <td>{{ item.projections[0]?.value }}</td>
+        <td>{{ item.projections[1]?.value }}</td>
+        <td>{{ item.projections[2]?.value }}</td>
+        <td>{{ item.projections[3]?.value }}</td>
+        <td>{{ item.projections[4]?.value }}</td>
+        <td>{{ item.projections[5]?.value }}</td>
+        <td>{{ item.projections[6]?.value }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(item.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(item.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-analyze-form *ngIf="item.isEditing" (loadData)="loadData()" [(isOpen)]="item.isEditing" [analyze]="item"
+      class="show-component">
+      </app-analyze-form>
+    </ng-container>
+  </tbody>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
+</div>

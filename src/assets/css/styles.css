@@ -1,0 +1,237 @@
+body {
+  background-color: rgba(248, 248, 248, 1);
+}
+
+.ngx-pagination .current {
+  background: #131baa !important;
+}
+
+.btn-radius {
+  border-radius: 20px !important;
+}
+
+.btn-primary {
+  background-color: rgba(19, 27, 170, 1) !important;
+}
+
+.btn {
+  padding: 0.313rem 1.597rem;
+}
+
+.btn-search {
+  border-radius: 5px;
+  margin-left: 1%;
+  font-size: 14px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.show-component {
+  display: contents;
+}
+
+.float {
+  position: fixed;
+  height: 70px;
+  bottom: 0px;
+  right: 30px;
+  text-align: center;
+}
+
+.btn-float {
+  padding-right: 20px;
+  padding-left: 20px;
+  border: none;
+  border-radius: 41px;
+  height: 50px;
+  font-family: "Roboto-Regular", "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  text-align: left;
+  display: flex;
+}
+
+.icon-action {
+  color: gray;
+  cursor: pointer;
+}
+
+.mr-30 {
+  margin-right: 30px;
+}
+
+.ml-30 {
+  margin-left: 30px;
+}
+
+.borderless > tr > th {
+  border: none;
+}
+
+table tr {
+  height: 60px;
+}
+
+.table td {
+  border-top: none;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table td {
+  display: table-cell;
+  vertical-align: middle;
+  color: #555555;
+}
+
+.txt-btn-float {
+  align-self: center;
+}
+
+.icon-btn-float {
+  align-self: center;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.breadcrumb-item.active {
+  color: black !important;
+  font-weight: 300;
+}
+
+.main-container {
+  background-color: white;
+}
+
+.container-tabs-nav {
+  padding-top: 0px !important;
+}
+
+.page-title {
+  font-family: "Roboto-Medium", "Roboto Medium", "Roboto", sans-serif;
+  border-width: 0px;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+  color: #ff651c;
+}
+
+.nav-link {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+  margin-left: 20px;
+}
+
+.nav-tabs {
+  border-bottom: 0;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: blue;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link {
+  color: gray;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link:hover {
+  color: blue;
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  padding-left: 0%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  flex: 1;
+  width: 100%;
+  padding: 15px;
+  flex-direction: column;
+}
+
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  max-width: 70%;
+}
+
+@media (min-width: 576px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 93% !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 98% !important;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    width: 98% !important;
+  }
+}
+
+.navbar-dark {
+  background-color: rgba(19, 27, 170, 1) !important;
+}
+
+.img-nav {
+  max-width: 7%;
+}
+
+.card {
+  border: none;
+}
+
+.title-page {
+  font-weight: 200;
+  font-size: 18px;
+  color: #383d55;
+}
+
+.title-page strong {
+  font-weight: bold;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+  background-color: #f3f3f3;
+  border-color: #f3f3f3;
+  font-size: 12px;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #333333;
+}

@@ -1,0 +1,90 @@
+<tr class="form-tr" [formGroup]="debtForm">
+  <td colspan="6">
+
+    <div class="row ml-0">
+      <div class="col-8 pl-0" style="flex: 0 0 52.666667%; max-width: 52.666667%;">
+        <div class="row">
+          <div class="col px-0 custom-column">
+            <div class="row  mb-2">
+              <ng-template #rtBank let-r="result" let-t="term">
+                <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+              </ng-template>
+              <input type="text" class="form-control form-input input-w-md" formControlName="bankId{{itemId}}"
+                [ngbTypeahead]="searchBank" [resultTemplate]="rtBank" [inputFormatter]="formatter" />
+            </div>
+            <div class="row">
+              <ng-template #rtDebtType let-r="result" let-t="term">
+                <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+              </ng-template>
+              <input type="text" class="form-control form-input input-w-md" formControlName="debtTypeId{{itemId}}"
+                [ngbTypeahead]="searchDebtType" [resultTemplate]="rtDebtType" [inputFormatter]="formatter" />
+            </div>
+          </div>
+          <div class="col px-0 custom-column">
+            <div class="row  mb-2">
+              <ng-template #rtDebtPurpose let-r="result" let-t="term">
+                <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+              </ng-template>
+              <input type="text" class="form-control form-input input-w-md" formControlName="debtPurposeId{{itemId}}"
+                [ngbTypeahead]="searchDebtPurpose" [resultTemplate]="rtDebtPurpose" [inputFormatter]="formatter" />
+            </div>
+            <div class="row">
+              <input class="form-control form-input input-w-md" formControlName="description{{itemId}}" type="text" />
+            </div>
+          </div>
+          <div class="col px-0 d-flex custom-column">
+            <input class="form-control form-input input-w-md my-auto" formControlName="instalment{{itemId}}"
+              type="text" />
+          </div>
+          <div class="col px-0 custom-column" style="padding-left: 28px !important;">
+            <div class="row mb-2">
+              <input class="form-control form-input input-w-md" formControlName="finalDate{{itemId}}" type="text" />
+            </div>
+            <div class="row">
+              <select class="form-control form-input input-w-md" formControlName="paymentMethod{{itemId}}">
+                <option disabled selected>Forma de pagamento</option>
+                <option value='1'>Anual</option>
+                <option value='2'>Mensal</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4" style="flex: 0 0 47.333333%; max-width: 47.333333%;">
+        <div class="row">
+          <div class="col px-0 text-left">
+            <label class="text-left">Taxa de Juros</label>
+            <input class="form-control form-input input-w-md" formControlName="interest{{itemId}}" type="text" />
+          </div>
+          <div class="col px-0 text-left">
+            <label class="text-left">Moeda</label>
+            <select class="form-control form-input input-w-md" formControlName="currency{{itemId}}">
+              <option disabled selected>Moeda</option>
+              <option value='1'>R$</option>
+              <option value='2'>US$</option>
+              <option value='3'>EUR</option>
+            </select>
+          </div>
+          <div class="col px-0 text-left">
+            <label class="text-left"><strong>Valor Total:</strong></label>
+            <input class="form-control form-input input-w-md" formControlName="totalValue{{itemId}}" type="text" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row justify-content-md-end">
+      <div class="col col-lg-2">
+        <label>Curto Prazo: {{ longShortPeriod.shortPeriod }}</label>
+      </div>
+      <div class="col col-lg-2">
+        <label>Longo Prazo: {{ longShortPeriod.longPeriod }}</label>
+      </div>
+      <div class="col col-lg-2">
+        <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+        <i (click)="cancelAddOrEdit()" class="fa fa-trash icon-action"></i>
+      </div>
+    </div>
+  </td>
+</tr>

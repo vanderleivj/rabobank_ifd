@@ -1,0 +1,50 @@
+<tr class="form-tr" [formGroup]='balanceForm'>
+  <td colspan="7">
+    <div class="row ml-0">
+      <div class="col">
+        <ng-template #rtBalance let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md input-h-sm my-2"
+          formControlName="balance{{itemId}}" [ngbTypeahead]="searchBalance" [resultTemplate]="rtBalance"
+          [inputFormatter]="formatter" />
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName='projectionsValue0{{itemId}}'>
+        <input class='form-control  form-input input-w-md value' type="hidden"
+          formControlName='projections0{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName='projectionsValue1{{itemId}}'>
+        <input class='form-control  form-input input-w-md value' type="hidden"
+          formControlName='projections1{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName='projectionsValue2{{itemId}}'>
+        <input class='form-control  form-input input-w-md value' type="hidden"
+          formControlName='projections2{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName='projectionsValue3{{itemId}}'>
+        <input class='form-control  form-input input-w-md value' type="hidden"
+          formControlName='projections3{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName='projectionsValue4{{itemId}}'>
+        <input class='form-control  form-input input-w-md value' type="hidden"
+          formControlName='projections4{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class="form-control form-input input-w-md" formControlName='projectionsValue5{{itemId}}'>
+        <input class='form-control  form-input input-w-md value' type="hidden"
+          formControlName='projections5{{ itemId }}'>
+      </div>
+    </div>
+  </td>
+  <td>
+    <div class="col">
+      <button class="btn btn-primary btn-radius mr-30 m-auto" (click)="addOrEdit()">Salvar</button>
+      <i class="fa fa-trash-alt icon-action pt-2" (click)="cancelAddOrEdit()"></i>
+    </div>
+  </td>
+</tr>

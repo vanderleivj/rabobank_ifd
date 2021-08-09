@@ -1,0 +1,12 @@
+<tr class="form-tr" [formGroup]='commercializationForm'>
+  <td><input class="form-control form-input input-w-md" formControlName="type{{itemId}}" type="text" /></td>
+  <td><input class="form-control form-input input-w-md" formControlName="buyer{{itemId}}" type="text" /></td>
+  <td><input class="form-control form-input input-w-md" formControlName="boardingDate{{itemId}}" type="text" /></td>
+  <td><input class="form-control form-input input-w-md" formControlName="quantity{{itemId}}" type="text" /></td>
+  <td><input class="form-control form-input input-w-md" formControlName="price{{itemId}}" type="text" /></td>
+  <td><input class="form-control form-input input-w-md" formControlName="amount{{itemId}}" type="text" /></td>
+  <td class="td-action">
+    <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+    <i (click)="cancelAddOrEdit()" class="fa fa-trash icon-action"></i>
+  </td>
+</tr>

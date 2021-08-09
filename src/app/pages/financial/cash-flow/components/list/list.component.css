@@ -1,0 +1,11 @@
+.section-header {
+  background-color: rgba(242, 242, 242, 0.741176470588235);
+}
+
+.section-header-blue {
+  background-color: #131baa;
+}
+
+.section-header-blue > td {
+  color: white !important;
+}

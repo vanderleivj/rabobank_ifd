@@ -1,0 +1,77 @@
+<tr class="form-tr" [formGroup]="stockForm">
+  <td colspan="5">
+    <div class="row ml-0">
+      <div class="col-2 pl-0 pr-5">
+        <input class="form-control form-input input-w-md" list="stockTypeOptions" id="stockTypeInput" placeholder="" formControlName="stockType{{itemId}}">
+          <datalist id="stockTypeOptions">
+            <option *ngFor="let item of stockTypeOptions" [value]="item.value" [label]="item.title">
+          </datalist>
+      </div>
+      <div class="col-2 pl-0 pr-5">
+        <input class="form-control form-input input-w-md" formControlName="quantity{{itemId}}" type="text" />
+      </div>
+      <div class="col-2 px-0 ml-5 pr-5">
+        <input class="form-control form-input input-w-md" formControlName="price{{itemId}}" type="text" />
+      </div>
+      <div class="col-2 px-0 ml-5 pr-5">
+        <input class="form-control form-input input-w-md shadow-none" formControlName="totalValue{{itemId}}" type="text" style="background-color: white; border: 0; color: #131BAA; text-align: center;" />
+      </div>
+      <div class="col-4 px-0">
+
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row pb-3">
+      <div class="col-md-4 text-left">
+        <label>Região RBB*</label>
+        <div class="form-group">
+          <ng-template #rtRegion let-r="result" let-t="term">
+            <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+          </ng-template>
+          <input type="text" class="form-control form-input input-w-md" formControlName="regionId{{itemId}}"
+            [ngbTypeahead]="searchRegion" [resultTemplate]="rtRegion" [inputFormatter]="formatter" />
+        </div>
+      </div>
+      <div class="col-md-4 text-left">
+        <label>UF*</label>
+        <select class="form-control form-input input-w-md" formControlName="stateId{{itemId}}" (change)="loadCities()">
+          <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-4 text-left">
+        <label>Município*</label>
+        <ng-template #rtCity let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md" formControlName="cityId{{itemId}}"
+          [ngbTypeahead]="searchCity" [resultTemplate]="rtCity" [inputFormatter]="formatter" />
+      </div>
+    </div>
+
+    <div class="row px-4">
+      <div class="col-md-4 text-left">
+        <label style="font-size: 14px;">Escolha entre</label>
+        <br>
+        <input type="radio" id="effective" formControlName="mode{{itemId}}" value="1">
+        <label class="pl-2 pr-4" style="font-size: 14px" for="effective">Efetivo</label>
+        <input type="radio" id="toDefine" formControlName="mode{{itemId}}" value="2">
+        <label class="pl-2" style="font-size: 14px" for="toDefine">A Definir</label><br>
+      </div>
+      <div class="col-md-4">
+        <br />
+        <label style="font-size: 14px">Referência RBB: Preço Atual (R$ / @):  <strong>{{ precoAtualRBB }}</strong></label><br>
+      </div>
+      <div class="col-md-4 pl-4">
+        <input class="form-control form-input input-w-lg" formControlName="observation{{itemId}}" placeholder="Observações" />
+      </div>
+
+    </div>
+    <hr>
+    <div class="row px-4">
+      <div class="col actions-right">
+        <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+        <i (click)="cancelAddOrEdit()" class="fa fa-trash-alt icon-action"  style="padding-top: 5px;"></i>
+      </div>
+    </div>
+  </td>
+</tr>

@@ -1,0 +1,84 @@
+<tr class="form-tr" [formGroup]='harvestForm'>
+  <td colspan="7">
+    <div class="row ml-0">
+      <div class="col columns-custom">
+        <select class="form-control input-w-md" formControlName="commodityTypeId{{itemId}}">
+          <option *ngFor="let commodity of commodities" value={{commodity.id}}>{{commodity.name}}</option>
+        </select>
+      </div>
+      <div class="col columns-custom">
+        <input class="form-control form-input input-w-md" formControlName="harvest{{itemId}}" type="text" />
+        <!-- arrumar Safra para select -->
+      </div>
+      <div class="col columns-custom">
+        <input class="form-control form-input input-w-md" formControlName="cultivationArea{{itemId}}" type="text" />
+      </div>
+      <div class="col columns-custom">
+        <input class="form-control form-input input-w-md" formControlName="productionCost{{itemId}}" type="text" />
+      </div>
+      <div class="col columns-custom">
+        <input class="form-control form-input input-w-md" formControlName="occurredCost{{itemId}}" type="text" />
+      </div>
+      <div class="col columns-custom">
+        <input class="form-control form-input input-w-md" formControlName="balance{{itemId}}" type="text" />
+      </div>
+      <div class="col columns-custom">
+        <label>Valor total<br /><span>1.443.226,41</span></label> <!-- trazer valores da API ainda -->
+      </div>
+    </div>
+    <hr>
+    <div class="row align-middle d-flex">
+      <div class="col-1 align-middle my-auto">
+        <label class="my-auto" style="font-size: 14px">Descrição:</label>
+      </div>
+      <div class="col-9">
+        <input class="form-control form-input input-w-md" formControlName="features{{itemId}}" type="text" />
+      </div>
+      <div class="col-2">
+
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-3 text-left">
+        <label>Região RBB</label>
+        <ng-template #rtRegion let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md" formControlName="regionId{{itemId}}"
+          [ngbTypeahead]="searchRegion" [resultTemplate]="rtRegion" [inputFormatter]="formatter" />
+      </div>
+      <div class="col-md-2  text-left">
+        <label>UF</label>
+        <select class="form-control form-input input-w-md" formControlName="stateId{{itemId}}" (change)="loadCities()">
+          <option *ngFor="let state of states" [value]="state.id">{{state.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-3  text-left">
+        <label>Município*</label>
+        <ng-template #rtCity let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md" formControlName="cityId{{itemId}}"
+          [ngbTypeahead]="searchCity" [resultTemplate]="rtCity" [inputFormatter]="formatter" />
+      </div>
+      <div class="col-md-2  text-left">
+        <label>Área Total</label>
+        <input class="form-control form-input input-w-md" formControlName="totalArea{{itemId}}" type="text" />
+      </div>
+      <div class="col-md-2  text-left">
+      </div>
+    </div>
+    <hr>
+    <div class="row px-4 ml-0">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1" formControlName="isRBB{{itemId}}">
+        <label class="custom-control-label" for="customSwitch1">UTILIZAR PREMISSAS RBB</label>
+      </div>
+      <div class="col actions-right">
+        <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+        <i (click)="cancelAddOrEdit()" class="icon-action fa fa-trash-alt" style="padding-top: 5px;"></i>
+      </div>
+    </div>
+  </td>
+</tr>

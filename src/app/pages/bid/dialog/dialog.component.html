@@ -1,0 +1,14 @@
+<div mat-dialog-content class="dialogContainerStyle">
+  <h1 mat-dialog-title>Entre com seu login e senha</h1>
+  <div class="divContainerStyle">
+    <p>Login</p>
+    <input class="inputContainerStyle" placeholder="Login" (change)="setEmail($event)">
+  </div>
+  <div class="divContainerStyle">
+    <p>Senha</p>
+    <input type="password" class="inputContainerStyle" placeholder="Senha" (change)="setSenha($event)">
+  </div><div class="divContainerStyle">
+    <p>{{message}}</p>
+  </div>
+  <button class="buttonDialogStyle" mat-button (click)="cancel()">Entrar</button>
+</div>

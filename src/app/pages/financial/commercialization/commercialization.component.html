@@ -1,0 +1,20 @@
+<div>
+  <div class="mt-4">
+    <div class="row justify-content-between">
+      <h5><strong>Produção e Comercialização </strong> da Proposta ({{quantity}})</h5>
+      <select id="type" (change)="onChangeType($event)">
+        <option value="1">Histórico de Produção</option>
+        <option value="2">Projeção da Safra Atual</option>
+        <option value="3">Projeção da Safra a ser financiada - Ano 1</option>
+        <option value="4">Projeções para as Próximas Safras</option>
+      </select>
+    </div>
+    <hr>
+
+    <app-commercialization-production *ngIf="isProduction"></app-commercialization-production>
+    <app-commercialization-current-harvest *ngIf='isCurrentHarvest'></app-commercialization-current-harvest>
+    <app-commercialization-financial-harvest *ngIf='isFinancialHarvest'></app-commercialization-financial-harvest>
+    <app-commercialization-next-harvest *ngIf='isNextHarvest'></app-commercialization-next-harvest>
+
+  </div>
+</div>

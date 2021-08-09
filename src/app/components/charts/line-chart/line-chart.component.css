@@ -1,0 +1,28 @@
+.main-container {
+
+}
+
+p {
+  margin-bottom: 0;
+}
+
+
+.container-title {
+  height: 100px;
+  padding: 15px 10px 0 30px;
+}
+
+.container-chart canvas {
+  height: 96px !important;
+}
+
+.title-legend-value {
+  font-size: 32px;
+  color: #3DC2A8;
+  font-weight: 500;
+}
+
+.title-legend {
+  font-size: 14px;
+  font-weight: 200;
+}

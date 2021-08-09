@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch via Yarn",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "yarn",
+      "cwd": "${workspaceFolder}",
+      "runtimeArgs": ["start"],
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+    }
+  ]
+}

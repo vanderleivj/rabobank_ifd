@@ -1,0 +1,28 @@
+label {
+  font-size: 12px;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.custom-column:nth-child(1) {
+  flex: 0 0 22%;
+  max-width: 22%;
+}
+
+.custom-column:nth-child(2) {
+  flex: 0 0 27%;
+  max-width: 27%;
+}
+
+.custom-column:nth-child(3) {
+  flex: 0 0 23%;
+  max-width: 23%;
+}
+
+.custom-column:nth-child(4) {
+  flex: 0 0 28%;
+  max-width: 28%;
+}

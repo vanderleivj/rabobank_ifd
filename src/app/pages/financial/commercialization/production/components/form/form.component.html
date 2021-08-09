@@ -1,0 +1,48 @@
+<tr class="form-tr" [formGroup]='productionForm'>
+  <td colspan="7">
+
+    <div class="row ml-0">
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='culture{{ itemId }}'>
+      </div>
+      <div class="col">
+        <ng-template #rtRegion let-r="result" let-t="term">
+          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+        </ng-template>
+        <input type="text" class="form-control form-input input-w-md" formControlName="regionId{{itemId}}"
+          [ngbTypeahead]="searchRegion" [resultTemplate]="rtRegion" [inputFormatter]="formatter" />
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' [attr.disabled]="true" formControlName='period2{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='area0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='area1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='area2{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='price0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='price1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='price2{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='productivity0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='productivity1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='productivity2{{ itemId }}'>
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='cost0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='cost1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='cost2{{ itemId }}'>
+      </div>
+    </div>
+  </td>
+  <td>
+    <div>
+      <button class="btn btn-primary btn-radius mr-30 m-auto" (click)="addOrEdit()">Salvar</button>
+      <i class="fa fa-trash-alt icon-action pt-2" (click)="cancelAddOrEdit()"></i>
+    </div>
+  </td>
+</tr>

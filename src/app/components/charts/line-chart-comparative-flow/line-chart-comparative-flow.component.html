@@ -1,0 +1,14 @@
+<div class="main-container">
+  <div class="container-title px-5">
+    <p class="title-legend">{{ chartTitle }}</p>
+    <div class="row justify-content-between">
+      <p class="title-legend-value" [style.color]="darkColor">{{ values() }}</p>
+      <!-- <i class="fas fa-long-arrow-alt-down"></i> -->
+      <label><span class="reviewed-up"><i class="fas fa-long-arrow-alt-up"></i>
+        1,17%</span></label>
+    </div>
+  </div>
+  <div class="container-chart" *ngIf="chartId !== ''">
+    <canvas [id]="chartId">{{ lineChart }}</canvas>
+  </div>
+</div>

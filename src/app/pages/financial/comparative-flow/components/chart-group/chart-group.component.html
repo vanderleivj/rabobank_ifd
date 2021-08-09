@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body p-0 pt-3 rounded">
+        <app-line-chart-comparative-flow
+          chartId='revenues'
+          chartTitle='Faturamento'
+          [chartData]='revenuesChartData'
+          [chartLabels]='revenuesChartLabels'
+          darkColor='#2A75BB'
+          lightColor='#D5E2F1'
+          >
+        </app-line-chart-comparative-flow>
+      </div>
+    </div>
+  </div>
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body p-0 pt-3 rounded">
+        <app-line-chart-comparative-flow
+          chartId='total-cost'
+          chartTitle='Custo Total'
+          [chartData]='totalCostChartData'
+          [chartLabels]='totalCostChartLabels'
+          darkColor='#3DC2A8'
+          lightColor='#E4F4F1'
+          >
+        </app-line-chart-comparative-flow>
+      </div>
+    </div>
+  </div>
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body p-0 pt-3 rounded">
+        <app-line-chart-comparative-flow
+          chartId='total-lease'
+          chartTitle='Arrendamento Total'
+          [chartData]='totalLeaseChartData'
+          [chartLabels]='totalLeaseChartLabels'
+          darkColor='#DC327E'
+          lightColor='#F9D5E3'
+          >
+        </app-line-chart-comparative-flow>
+      </div>
+    </div>
+  </div>
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body p-0 pt-3 rounded">
+        <app-line-chart-comparative-flow
+          chartId='ebtida'
+          chartTitle='Ebtida Total'
+          [chartData]='ebtidaChartData'
+          [chartLabels]='ebtidaChartLabels'
+          darkColor='#BDAA66'
+          lightColor='#FAF8EF'
+        >
+        </app-line-chart-comparative-flow>
+      </div>
+    </div>
+  </div>
+</div>

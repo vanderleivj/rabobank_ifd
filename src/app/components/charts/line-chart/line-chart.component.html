@@ -1,0 +1,9 @@
+<div class="main-container">
+  <div class="container-title">
+    <p class="title-legend-value" [style.color]="darkColor">{{ totalOwnArea() }}</p>
+    <p class="title-legend">{{ chartTitle }}</p>
+  </div>
+  <div class="container-chart" *ngIf="chartId !== ''">
+    <canvas [id]="chartId">{{ lineChart }}</canvas>
+  </div>
+</div>

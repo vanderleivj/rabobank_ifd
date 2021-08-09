@@ -1,0 +1,59 @@
+.container {
+  display: -webkit-inline-box;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.container-chart {
+  position: absolute;
+  left: 1vw;
+  top: 3vw;
+}
+
+.container-chart canvas {
+  height: 250px !important;
+}
+
+.container-title {
+  z-index: 999;
+  position: absolute;
+  align-self: center;
+  color: #8C8C8C;
+  width: 100%;
+  top: 110px;
+}
+
+.chart-title-value, .chart-title {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.chart-title-value span {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Roboto-Medium', 'Roboto Medium', sans-serif;
+}
+
+.chart-title-value {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: 'Roboto-Regular', 'Roboto', sans-serif;
+}
+
+.chart-title {
+  font-size: 13px;
+}
+
+.color-container {
+  display: inline-flex;
+}
+
+label {
+  font-size: 12px;
+  margin: auto;
+  margin-left: 10px;
+}

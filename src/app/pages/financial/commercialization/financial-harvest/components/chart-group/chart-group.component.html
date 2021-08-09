@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body line-chart-container">
+        <app-line-chart-financial-harvest
+          chartId='total-area-value'
+          chartTitle='Área Total'
+          [chartData]='totalAreaValueChartData'
+          [chartLabels]='totalAreaValueChartLabels'
+          darkColor='#2A75BB'
+          lightColor='#2A75BB'
+        >
+        </app-line-chart-financial-harvest>
+      </div>
+    </div>
+  </div>
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body line-chart-container">
+        <app-line-chart-financial-harvest
+          chartId='total-gross=revenue'
+          chartTitle='Receita Bruta Total'
+          [chartData]='totalGrossRevenueChartData'
+          [chartLabels]='totalGrossRevenueChartLabels'
+          darkColor='#3DC2A8'
+          lightColor='#E4F4F1'
+        >
+        </app-line-chart-financial-harvest>
+      </div>
+    </div>
+  </div>
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body line-chart-container">
+        <app-line-chart-financial-harvest
+          chartId='total-cost'
+          chartTitle='Custo Total'
+          [chartData]='totalCostChartData'
+          [chartLabels]='totalCostChartLabels'
+          darkColor='#DC327E'
+          lightColor='#DC327E'
+        >
+        </app-line-chart-financial-harvest>
+      </div>
+    </div>
+  </div>
+</div>

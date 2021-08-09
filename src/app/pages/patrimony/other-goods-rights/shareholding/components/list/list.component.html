@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col col-lg-2">
+    <select class="form-control" [formControl]="downloadType" (change)="doDownload()">
+      <option value="0" disabled selected>Exportar</option>
+      <option value="1">Imprimir</option>
+      <option value="2">PDF</option>
+      <option value="3">Excel</option>
+    </select>
+  </div>
+
+  <div class="ml-auto bd-highlight">
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="form-control" [formControl]="search" (change)="loadData()" placeholder="Pesquisar">
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead class="borderless">
+    <tr>
+      <th class="text-left">EMPRESA</th>
+      <th>VALOR DO PATRIMÔNIO LÍQUIDO (R$)</th>
+      <th>% CAPITAL</th>
+      <th>VALOR TOTAL DA PARTICIPAÇÃO (R$)</th>
+      <th>RECEITA BRUTA</th>
+      <th>FONTE DE INFORMAÇÃO</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <app-others-goods-rights-shareholding-form *ngIf="isOpen" [(isOpen)]="isOpen" (loadData)="loadData()" class="show-component">
+    </app-others-goods-rights-shareholding-form>
+    <ng-container *ngFor="let shareholding of othersGoodShareholding | paginate: { itemsPerPage: pagination.pageSize, currentPage: pagination.page, totalItems: pagination.count }">
+      <tr *ngIf="!shareholding.isEditing">
+        <td>
+          {{ shareholding.companyInfo?.name }}
+          <br>
+          {{ shareholding.companyInfo?.cnpj }}
+        </td>
+        <td>{{ shareholding.equityCapitalValue }}</td>
+        <td>{{ shareholding.capitalPortion }}</td>
+        <td>{{ shareholding.fullParticipationValue }}</td>
+        <td>{{ shareholding.grossRevenue }}</td>
+        <td>{{ shareholding.source?.name }}</td>
+        <td>
+          <div>
+            <i class="icon-action mr-30 fa fa-pencil-alt" (click)="loadEdit(shareholding.id || '')"></i>
+            <i class="icon-action mr-30 fa fa-trash-alt" (click)="delete(shareholding.id || '')"></i>
+          </div>
+        </td>
+      </tr>
+      <app-others-goods-rights-shareholding-form *ngIf="shareholding.isEditing" (loadData)="loadData()" [(isOpen)]="shareholding.isEditing"
+        [othersGoodsRightsShareholding]="shareholding" class="show-component">
+      </app-others-goods-rights-shareholding-form>
+
+    </ng-container>
+  </tbody>
+</table>
+<div class="text-right">
+  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior" nextLabel="Próximo">
+  </pagination-controls>
+</div>
+
+<div class="float">
+  <button (click)="loadAdd()" class="btn-float btn btn-primary primary-background-color">
+    <span class="txt-btn-float">
+      Adicionar Novo
+    </span>
+    <i class="fas fa-plus icon-btn-float"></i>
+  </button>
+</div>

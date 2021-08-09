@@ -1,0 +1,8 @@
+<tr class="form-tr" [formGroup]='costForm'>
+  <td><input class="form-control form-input input-w-md" formControlName="period{{itemId}}" type="text" /></td>
+  <td><input class="form-control form-input input-w-md" formControlName="amount{{itemId}}" type="text" /></td>
+  <td class="td-action">
+    <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+    <i (click)="cancelAddOrEdit()" class="fa fa-trash icon-action"></i>
+  </td>
+</tr>

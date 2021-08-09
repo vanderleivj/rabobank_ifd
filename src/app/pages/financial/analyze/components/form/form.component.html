@@ -1,0 +1,47 @@
+<tr class="form-tr" [formGroup]='analyzeForm'>
+  <td colspan="7">
+    <div class="row ml-0">
+      <div class="col">
+        <input class="form-control form-input input-w-md input-h-sm my-2" list="accountTypeOptions" id="accountInput"
+            formControlName="accountType{{itemId}}"> <!-- disabled -->
+        <datalist id="accountTypeOptions">
+          <option *ngFor="let item of accountType" [value]="item.id" [label]="item.name">
+        </datalist>
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='projectionsValue0{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='projections0{{ itemId }}' type="hidden">
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='projectionsValue1{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='projections1{{ itemId }}' type="hidden">
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='projectionsValue2{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='projections2{{ itemId }}' type="hidden">
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='projectionsValue3{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='projections3{{ itemId }}' type="hidden">
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='projectionsValue4{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='projections4{{ itemId }}' type="hidden">
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='projectionsValue5{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='projections5{{ itemId }}' type="hidden">
+      </div>
+      <div class="col">
+        <input class='form-control form-input input-w-md' formControlName='projectionsValue6{{ itemId }}'>
+        <input class='form-control form-input input-w-md' formControlName='projections6{{ itemId }}' type="hidden">
+      </div>
+    </div>
+  </td>
+  <td>
+    <div class="col">
+      <button class="btn btn-primary btn-radius mr-30 m-auto" (click)="addOrEdit()">Salvar</button>
+      <i class="fa fa-trash-alt icon-action pt-2" (click)="cancelAddOrEdit()"></i>
+    </div>
+  </td>
+</tr>

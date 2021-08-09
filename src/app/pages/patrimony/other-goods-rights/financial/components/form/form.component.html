@@ -1,0 +1,55 @@
+<tr class="form-tr" [formGroup]="financialForm">
+  <td colspan="7">
+    <div class="row ml-0">
+      <div class="col-md-2 px-0">
+        <input class="form-control form-input input-w-md" formControlName="asset{{itemId}}" type="text" />
+      </div>
+      <div class="col-md-2 px-0">
+        <input class="form-control form-input input-w-md" formControlName="totalAmount{{itemId}}" type="text" />
+      </div>
+      <div class="col-md-2 px-0">
+        <input class="form-control form-input input-w-md" formControlName="discounts{{itemId}}" type="text" />
+      </div>
+      <div class="col-md-2 px-0">
+        <input class="form-control form-input input-w-md" formControlName="discountsTotalAmount{{itemId}}"
+          type="text" />
+      </div>
+      <div class="col-md-4 px-0">
+        <input class="form-control form-input input-w-md" formControlName="features{{itemId}}" type="text" />
+      </div>
+    </div>
+    <hr>
+    <div class="row ml-2 px-4">
+      <label>Distribuição Mensal</label><i
+        [class]="distribution ? 'icon-action fa fa-chevron-up ml-2' : 'icon-action fa fa-chevron-down ml-2'"
+        (click)="expandListDetails()"></i>
+      <div class="col actions-right" *ngIf='!distribution'>
+        <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+        <i (click)="cancelAddOrEdit()" class="fa fa-trash-alt icon-action" style="padding-top: 5px;"></i>
+      </div>
+    </div>
+
+    <div *ngIf="distribution">
+      <div class="row-expanded">
+        <div class="row">
+          <div class="col-md-6 text-left">
+            <label>Periodo</label>
+          </div>
+          <div class="col-md-6 text-right">
+            <label>Valor (R$)</label>
+          </div>
+        </div>
+        <ng-container *ngFor='let distribution of othersGoodsRightsFinancial?.distributions'>
+          <div class="row distribution-row">
+            <div class="col-md-6 text-left distribution-row-text">
+              <label>{{ distribution.period }}</label>
+            </div>
+            <div class="col-md-6 text-right distribution-row-text">
+              <label>{{ distribution.amount }}</label>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </td>
+</tr>

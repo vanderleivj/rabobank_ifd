@@ -1,0 +1,42 @@
+<tr class="form-tr" [formGroup]='newCurrentForm'>
+  <td>
+    <div class="form-group">
+      <ng-template #rtAsset let-r="result" let-t="term">
+        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+      </ng-template>
+      <input type="text" class="form-control form-input input-w-md" formControlName="asset{{itemId}}"
+        [ngbTypeahead]="searchAsset" [resultTemplate]="rtAsset" [inputFormatter]="formatter" />
+    </div>
+  </td>
+  <td>
+    <input class='form-control form-input input-w-md value' formControlName='current{{ itemId }}'>
+  </td>
+  <td>
+    <input class='form-control form-input input-w-md value' formControlName='projectionsValue1{{ itemId }}'>
+    <input class='form-control  form-input input-w-md value' type="hidden" formControlName='projections1{{ itemId }}'>
+  </td>
+  <td>
+    <input class='form-control form-input input-w-md value' formControlName='projectionsValue2{{ itemId }}'>
+    <input class='form-control form-input input-w-md value' type="hidden" formControlName='projections2{{ itemId }}'>
+  </td>
+  <td>
+    <input class='form-control form-input input-w-md value' formControlName='projectionsValue3{{ itemId }}'>
+    <input class='form-control form-input input-w-md value' type="hidden" formControlName='projections3{{ itemId }}'>
+  </td>
+  <td>
+    <input class='form-control form-input input-w-md value' formControlName='projectionsValue4{{ itemId }}'>
+    <input class='form-control form-input input-w-md value' type="hidden" formControlName='projections4{{ itemId }}'>
+  </td>
+  <td>
+    <input class='form-control form-input input-w-md value' formControlName='projectionsValue5{{ itemId }}'>
+    <input class='form-control form-input input-w-md value' type="hidden" formControlName='projections5{{ itemId }}'>
+  </td>
+  <td>
+    <input class='form-control form-input input-w-md value' formControlName='projectionsValue6{{ itemId }}'>
+    <input class='form-control form-input input-w-md value' type="hidden" formControlName='projections6{{ itemId }}'>
+  </td>
+  <td class="td-action px-4">
+    <button (click)="addOrEdit()" class="btn btn-primary btn-radius mr-30">Salvar</button>
+    <i (click)="cancelAddOrEdit()" class="fa fa-trash-alt icon-action"></i>
+  </td>
+</tr>

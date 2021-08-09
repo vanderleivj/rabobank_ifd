@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body line-chart-container">
+        <app-line-chart-commercialization
+          chartId='total-revenue'
+          chartTitle='Gráfico Receita Total'
+          [chartData]='totalRevenueChartData'
+          [chartLabels]='totalRevenueChartLabels'
+          darkColor='#2A75BB'
+          lightColor='#D5E2F1'
+          >
+        </app-line-chart-commercialization>
+      </div>
+    </div>
+  </div>
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body line-chart-container">
+        <app-line-chart-commercialization
+          chartId='total-cost'
+          chartTitle='Gráfico Custo Total'
+          [chartData]='totalCostChartData'
+          [chartLabels]='totalCostChartLabels'
+          darkColor='#3DC2A8'
+          lightColor='#E4F4F1'
+          >
+        </app-line-chart-commercialization>
+      </div>
+    </div>
+  </div>
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body line-chart-container">
+        <app-line-chart-commercialization
+          chartId='total-lease'
+          chartTitle='Gráfico Arrendamento Total'
+          [chartData]='totalLeaseChartData'
+          [chartLabels]='totalLeaseChartLabels'
+          darkColor='#DC327E'
+          lightColor='#F9D5E3'
+          >
+        </app-line-chart-commercialization>
+      </div>
+    </div>
+  </div>
+  <div class="col pr-2">
+    <div class="shadow-sm card">
+      <div class="card-body line-chart-container">
+        <app-line-chart-commercialization
+          chartId='ebtida'
+          chartTitle='Gráfico Ebtida Total'
+          [chartData]='ebtidaChartData'
+          [chartLabels]='ebtidaChartLabels'
+          darkColor='#BDAA66'
+          lightColor='#FAF8EF'
+        >
+        </app-line-chart-commercialization>
+      </div>
+    </div>
+  </div>
+</div>

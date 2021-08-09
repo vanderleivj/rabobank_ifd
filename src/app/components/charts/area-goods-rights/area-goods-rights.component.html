@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="container-legend">
+    <div class="soy-area">
+      <div class="row">
+        <p class="title-legend">Soja em Grãos</p>
+        <div class="container-values-soy">
+          <p class="soy-quantity-value">779.009</p>
+          <p class="soy-cash-value">R$ 3.227.338,27</p>
+        </div>
+      </div>
+    </div>
+    <div class="coffee-area">
+      <div class="row">
+        <p class="title-legend">Grão de café</p>
+        <div class="container-values-coffee">
+          <p class="coffee-quantity-value">478.119</p>
+          <p class="coffee-cash-value">R$ 2.337.227,26</p>
+        </div>
+      </div>
+    </div>
+    <div class="others-area">
+      <div class="row">
+        <p class="title-legend">Outros</p>
+        <div class="container-values-others">
+          <p class="others-quantity-value">133.992</p>
+          <p class="others-cash-value">R$ 1.327.538,11</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-chart">
+    <canvas [id]="chartId">{{ chartQuantity }}</canvas>
+    <div class="container-title">
+      <p class="chart-title-value"><span>{{titleQuantityChartValue}}</span></p>
+      <p class="chart-title">Total de grãos</p>
+    </div>
+  </div>
+</div>
